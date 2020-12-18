@@ -1,0 +1,19 @@
+.navbar {
+    background: darkturquoise;
+    grid-area: nav;
+    padding: 20px;
+}
+
+.item {
+    padding: 7px 0;
+}
+
+.item a {
+    font: 600 19px/1.2 'Segoe UI', sans-serif;
+    color: black;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: ghostwhite;
+}

@@ -1,0 +1,16 @@
+.item {
+    padding: 20px;
+    font: 600 19px/1.2 'Segoe UI', sans-serif;
+    color: black;
+
+}
+.item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-left: 15px;
+}
+.logo img{
+    width: 60px;
+    height: 60px;
+}
