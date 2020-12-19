@@ -7,10 +7,6 @@
     padding: 20px;
 }
 
-.dialog {
-    padding: 5px;
-}
-
 .dialogs_item .active {
     color: moccasin;
 }
@@ -19,6 +15,3 @@
     padding: 20px;
 }
 
-.message {
-    padding: 5px;
-}
