@@ -1,6 +1,6 @@
 .dialog {
-    padding: 5px;
+    padding: 20px 0 50px;
 }
 .dialog .active {
-
+    padding-top: 50px;
 }

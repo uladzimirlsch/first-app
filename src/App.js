@@ -8,16 +8,17 @@ import News from "./components/News/News";
 import MyMusic from "./components/MyMusic/MyMusic";
 import Settings from "./components/Settings/Settings";
 
+
 const App = (props) => {
-
-
     return (
         <BrowserRouter>
             <div className="app-study">
                 <Header/>
                 <Navbar/>
                 <div className={'app-study-content'}>
-                    <Route path={'/profile'} render={() => <Profile state={props.state.profilePage}/>}/>
+                    <Route path={'/profile'} render={() => <Profile profilePage={props.state.profilePage}
+                                                                    addPost={props.addPost}
+                                                                    updateNewPostText={props.updateNewPostText}/>}/>
                     <Route path={'/dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <MyMusic/>}/>
