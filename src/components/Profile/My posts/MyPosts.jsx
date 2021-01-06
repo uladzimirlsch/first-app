@@ -5,17 +5,19 @@ import Post from "./Post/Post";
 const MyPosts = (props) => {
 
     let myPost =
-        props.myPostData.map((posts) => <Post message={posts.message} likes={posts.likes}/>);
+        props.post.map((posts) => <Post message={posts.message} likes={posts.likes}/>);
 
     let getPost = React.createRef()
 
     let addPost = () => {
-        props.addPost()
-        props.updateNewPostText('')
+        // props.addPost()
+        props.dispatch({type:'ADD-POST'})
     }
     let onPostChange = () => {
         let text = getPost.current.value
-        props.updateNewPostText(text)
+        // props.updateNewPostText(text)
+        let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
+        props.dispatch(action)
     }
 
     return (
