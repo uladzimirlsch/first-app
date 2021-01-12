@@ -8,11 +8,10 @@ let store = {
             post: [
                 {id: 1, message: 'Hello, world.', likes: '25'},
                 {id: 2, message: 'It is my first post.', likes: '15'},
-                {id: 3, message: "That's good network.", likes: '38'}
+                {id: 3, message: "That's a good network.", likes: '38'}
             ],
             newPostText: 'Hello'
         },
-
         dialogsPage: {
             dialogs: [
                 {id: 1, name: 'Сергей'},
@@ -35,14 +34,12 @@ let store = {
     _callSubscriber() {
         console.log('')
     },
-
     getState() {
         return this._state
     },
     subscribe(observer) {
         this._callSubscriber = observer
     },
-
     dispatch(action) {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
@@ -50,7 +47,6 @@ let store = {
         this._callSubscriber(this._state)
     }
 }
-
 export default store;
 
 window.store = store
