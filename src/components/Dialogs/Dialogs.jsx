@@ -2,19 +2,16 @@ import one from "./Dialogs.module.css"
 import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 
-
-
 const Dialogs = (props) => {
-
-    let dialogsElements = props.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
-    let messageElements = props.dialogsPage.messages.map((m) => <MessageItem message={m.message}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id} key={d.id}/>)
+    let messageElements = props.dialogsPage.messages.map((m) => <MessageItem message={m.message} key={m.id}/>)
     let newMessageBody = props.dialogsPage.newMessageBody
 
     let onNewMessageChange = (event) => {
         props.updateNewMessageBody(event.target.value)
     }
     let onSendMessageClick = () => {
-        props.sendMessage()
+        props.addMessage()
     }
     return (
         <div className={one.dialogs}>

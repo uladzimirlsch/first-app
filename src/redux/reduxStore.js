@@ -9,4 +9,7 @@ let reducerMass = combineReducers({
     sidebarPage: sidebarPageReducer
 })
 let store = createStore(reducerMass)
+
+window.store =  store
+
 export default store
