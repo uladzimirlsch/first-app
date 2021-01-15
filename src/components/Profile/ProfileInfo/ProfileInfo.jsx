@@ -1,6 +1,5 @@
 import one from "./ProfileInfo.module.css";
 
-
 const ProfileInfo = () => {
     return (
         <div className={one.profile_item}>

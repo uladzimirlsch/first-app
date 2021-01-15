@@ -1,6 +1,4 @@
-import React from "react";
 import one from "./MessageItem.module.css";
-import {sendMessageCreator, updateNewMessageCreator} from "../../../redux/store";
 
 const MessageItem = (props) => {
     return (
