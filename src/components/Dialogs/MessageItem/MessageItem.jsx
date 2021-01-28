@@ -1,9 +1,9 @@
-import one from "./MessageItem.module.css";
+import styles from "./../Dialogs.module.css";
 
 const MessageItem = (props) => {
     return (
         <div>
-            <div className={one.message}>
+            <div className={styles.message}>
                 {props.message}
             </div>
         </div>

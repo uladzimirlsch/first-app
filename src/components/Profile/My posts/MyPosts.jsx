@@ -3,30 +3,29 @@ import one from "./MyPosts.module.css"
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-	let myPost = props.post.map( posts => <Post message={posts.message} likes={posts.likes} key={posts.id}/> );
-	let newPostText = React.createRef()
+	let myPost = props.post.map(posts => (<Post message={posts.message} likes={posts.likes} key={posts.id}/>));
 
-	let onPostChange = () => {
-		props.updateNewPostText(newPostText.current.value)
-	}
-	let onAddPost = () => {
-		props.addPost()
-	}
 	return (
 		<div className={one.itemBlock}>
-			<h2>My Posts</h2>
+			<h3>My Posts</h3>
 			<div>
                 <textarea
 					value={props.newPostText}
-					onChange={onPostChange}
-					placeholder={'Add post'}
-					ref={newPostText} />
+					onChange={(event) => {
+						props.updateNewPostText(event.target.value)
+					}}
+					placeholder={'Add post'}/>
 			</div>
-            <button onClick={onAddPost}>Add info</button>
+			<div>
+				<button onClick={() => {
+					props.addPost()
+				}}>Send
+				</button>
+			</div>
 			<div>
 				{myPost}
 			</div>
 		</div>
 	)
-}; 
+};
 export default MyPosts;

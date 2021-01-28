@@ -3,11 +3,11 @@ const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 let initialState = {
 	dialogs: [
-		{id: 1, name: 'Сергей'},
-		{id: 2, name: 'Александр'},
-		{id: 3, name: 'Наталья'},
-		{id: 4, name: 'Андрей'},
-		{id: 5, name: 'Татьяна'}
+		{id: 1, name: 'Michael'},
+		{id: 2, name: 'Aleksandr'},
+		{id: 3, name: 'Natali'},
+		{id: 4, name: 'Andrew'},
+		{id: 5, name: 'Marina'},
 	],
 	messages: [
 		{id: 1, message: 'Hello!'},
@@ -27,7 +27,10 @@ const dialogsPageReducer = (state = initialState, action) => {
 			}
 			return {
 				...state,
-				messages: [...state.messages, newMessage],
+				messages: [...state.messages, {
+					id: 6,
+					message: state.newMessageBody
+				}],
 				newMessageBody: ''
 			}
 		case UPDATE_NEW_MESSAGE_BODY:
@@ -39,6 +42,6 @@ const dialogsPageReducer = (state = initialState, action) => {
 			return state
 	}
 }
-export const addMessageCreator = () => ({type: ADD_MESSAGE})
-export const updateNewMessageBodyCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, newBody: body})
+export const addMessageAC = () => ({type: ADD_MESSAGE})
+export const updateNewMessageBodyAC = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, newBody: body})
 export default dialogsPageReducer

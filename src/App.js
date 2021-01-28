@@ -7,12 +7,11 @@ import UsersContainer from "./components/Users/UsersContainer";
 import News from "./components/News/News";
 import MyMusic from "./components/MyMusic/MyMusic";
 import Settings from "./components/Settings/Settings";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 
-const App = (props) => {
+const App = () => {
 	return (
-		<BrowserRouter>
-			<div className="app-study">
+			<div className={"app-study"}>
 				<Header/>
 				<Navbar/>
 				<div className={'app-study-content'}>
@@ -24,7 +23,6 @@ const App = (props) => {
 					<Route path={'/settings'} render={() => <Settings/>}/>
 				</div>
 			</div>
-		</BrowserRouter>
 	);
 }
 export default App;

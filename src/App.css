@@ -9,10 +9,8 @@
 }
 
 .app-study-content {
-    background: darkturquoise;
+    background: gainsboro;
     grid-area: pro;
 }
 
-.app-study-content img {
-    width: 70%;
-}
+

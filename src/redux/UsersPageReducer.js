@@ -10,22 +10,12 @@ const usersPageReducer = (state = initialState, action) => {
 		case FOLLOW:
 			return {
 				...state,
-				users: state.users.map(u => {
-					if (u.id === action.userID) {
-						return {...u, followed: true}
-					}
-					return u
-				})
+				users: state.users.map(u => (u.id === action.userID) ? {...u, followed: true} : u)
 			}
 		case UNFOLLOW:
 			return {
 				...state,
-				users: state.users.map(u => {
-					if (u.id === action.userID) {
-						return {...u, followed: false}
-					}
-					return u
-				})
+				users: state.users.map(u => (u.id === action.userID) ? {...u, followed: false} : u)
 			}
 		case SET_USERS:
 			return {

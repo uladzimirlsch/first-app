@@ -1,23 +1,23 @@
-import one from "./Navbar.module.css";
+import styles from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav className={one.navbar}>
-            <div className={one.item}>
-                <NavLink to={'/profile'} activeClassName={one.activeLink}>Profile</NavLink>
+        <nav className={styles.navbar}>
+            <div className={styles.item}>
+                <NavLink to={'/profile'} activeClassName={styles.activeLink}>Profile</NavLink>
             </div>
-            <div className={one.item}>
-                <NavLink to={'/dialogs'} activeClassName={one.activeLink}>Messages</NavLink>
+            <div className={styles.item}>
+                <NavLink to={'/dialogs'} activeClassName={styles.activeLink}>Messages</NavLink>
             </div>
-            <div className={one.item}>
-                <NavLink to={'/news'} activeClassName={one.activeLink}>News</NavLink>
+            <div className={styles.item}>
+                <NavLink to={'/news'} activeClassName={styles.activeLink}>News</NavLink>
             </div>
-            <div className={one.item}>
-                <NavLink to={'/music'} activeClassName={one.activeLink}>Music</NavLink>
+            <div className={styles.item}>
+                <NavLink to={'/music'} activeClassName={styles.activeLink}>Music</NavLink>
             </div>
-            <div className={one.item}>
-                <NavLink to={'/settings'} activeClassName={one.activeLink}>Settings</NavLink>
+            <div className={styles.item}>
+                <NavLink to={'/settings'} activeClassName={styles.activeLink}>Settings</NavLink>
             </div>
         </nav>
     )

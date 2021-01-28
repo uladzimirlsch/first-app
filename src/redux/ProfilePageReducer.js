@@ -3,23 +3,21 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 let initialState = {
 	post: [
-		{id: 1, message: 'Hello, world.', likes: 25},
-		{id: 2, message: 'It is my first post.', likes: 15},
-		{id: 3, message: "That's a good network.", likes: 38}
+		{id: 1, message: 'Hello. It is my first post.', likes: 25},
+		{id: 2, message: "That's a good network.", likes: 38}
 	],
 	newPostText: ''
 }
 const profilePageReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_POST:
-			let newPost = {
-				id: 4,
-				message:state.newPostText,
-				likes: 0
-			}
 			return {
 				...state,
-				post: [...state.post, newPost],
+				post: [...state.post, {
+					id: 4,
+					message: state.newPostText,
+					likes: 0
+				}],
 				newPostText: ''
 			}
 		case UPDATE_NEW_POST_TEXT:
@@ -31,6 +29,6 @@ const profilePageReducer = (state = initialState, action) => {
 			return state
 	}
 }
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const addPostAC = () => ({type: ADD_POST})
+export const updateNewPostTextAC = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 export default profilePageReducer
