@@ -1,6 +1,6 @@
 // import styles from './Users.module.css'
 // import * as axios from "axios";
-// import userImage from '../../assets/images/avatars-000715955569-knzo3k-t500x500.jpg'
+// import userImage from '../../assets/images/avatar-siba.jpg'
 //
 // const Users = (props) => {
 // 	let getUsers = () => {
