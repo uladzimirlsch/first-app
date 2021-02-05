@@ -11,6 +11,7 @@
 .app-study-content {
     background: gainsboro;
     grid-area: pro;
+    width: 100%;
 }
 
 

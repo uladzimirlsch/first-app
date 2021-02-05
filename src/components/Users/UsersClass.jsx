@@ -1,6 +1,8 @@
 import styles from "./Users.module.css";
 import userImage from "../../assets/images/avatar-siba.jpg";
 import React from "react";
+import {NavLink} from "react-router-dom";
+import {instance} from "../../api/api";
 
 const UsersClass = (props) => {
 
@@ -23,14 +25,30 @@ const UsersClass = (props) => {
 
             {props.users.map(u => <div key={u.id}>
                     <div className={styles.userPhoto}>
-                        <img src={u.photos.small || userImage} alt={''}/>
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small || userImage} alt={''}/>
+                        </NavLink>
                         <div className={styles.userButton}>
                             {u.followed
-                                ? <button onClick={() => {
-                                    props.unfollow(u.id)
+                                ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                   props.setFollowingIsProgress(true, u.id)
+                                    instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`).then(r => {
+                                            if (r.data.resultCode === 0) {
+                                                props.unfollow(u.id)
+                                            }
+                                           props.setFollowingIsProgress(false, u.id)
+                                        }
+                                    )
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
-                                    props.follow(u.id)
+                                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                   props.setFollowingIsProgress(true, u.id)
+                                    instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`).then(r => {
+                                            if (r.data.resultCode === 0) {
+                                                props.follow(u.id)
+                                            }
+                                           props.setFollowingIsProgress(false, u.id)
+                                        }
+                                    )
                                 }}>Follow</button>}
                         </div>
                     </div>
