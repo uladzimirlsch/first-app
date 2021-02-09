@@ -1,9 +1,10 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import ProfilePageReducer from "./ProfilePageReducer";
 import DialogsPageReducer from "./DialogsPageReducer";
 import SidebarPageReducer from "./SidebarPageReducer";
 import UsersPageReducer from "./UsersPageReducer";
 import AuthenticReducer from "./AuthenticReducer"
+import thunkMiddleware from "redux-thunk"
 
 let reducerMass = combineReducers({
     profilePage: ProfilePageReducer,
@@ -12,7 +13,7 @@ let reducerMass = combineReducers({
     usersPage: UsersPageReducer,
     authentication: AuthenticReducer,
 })
-let store = createStore(reducerMass)
+let store = createStore(reducerMass, applyMiddleware(thunkMiddleware))
 
 window.store =  store
 

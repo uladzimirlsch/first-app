@@ -2,20 +2,18 @@ import {addMessageAC, updateNewMessageBodyAC,} from "../../redux/DialogsPageRedu
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 
-let mapStateToProps = (state) => {
-	return {
-		dialogsPage: state.dialogsPage
-	}
-}
+let mapStateToProps = (state) => ({
+    dialogsPage: state.dialogsPage
+})
 let mapDispatchToProps = (dispatch) => {
-	return {
-		addMessage: () => {
-			dispatch(addMessageAC())
-		},
-		updateNewMessageBody: (newBody) => {
-			dispatch(updateNewMessageBodyAC(newBody))
-		}
-	}
+    return {
+        addMessage: () => {
+            dispatch(addMessageAC())
+        },
+        updateNewMessageBody: (newBody) => {
+            dispatch(updateNewMessageBodyAC(newBody))
+        }
+    }
 }
-export default connect (mapStateToProps, mapDispatchToProps)(Dialogs)
+export default connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 

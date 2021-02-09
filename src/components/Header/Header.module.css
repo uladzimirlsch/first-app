@@ -2,10 +2,13 @@
     background: aliceblue;
     grid-area: head;
 }
+
 .header img {
     width: 60px;
     padding: 15px 20px;
 }
+
 .loginBlock {
-float: right;
+    float: right;
+    color: brown;
 }
