@@ -1,6 +1,7 @@
 import styles from "./Dialogs.module.css"
 import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
+import {Redirect} from "react-router-dom";
 
 const Dialogs = (props) => {
 	let dialogsElements = props.dialogsPage.dialogs.map((d) => (<DialogItem id={d.id} name={d.name} key={d.id}/>))
@@ -29,5 +30,5 @@ const Dialogs = (props) => {
 			</div>
 		</div>
 	)
-};
+}
 export default Dialogs;

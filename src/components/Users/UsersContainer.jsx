@@ -3,6 +3,9 @@ import {connect} from "react-redux";
 import {follow, getUsers, unfollow} from "../../redux/UsersPageReducer";
 import Users from "./Users";
 import Preloader from "../../commonFiles/preloader/Preloader";
+import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
@@ -13,6 +16,9 @@ class UsersContainer extends React.Component {
         this.props.getUsers(pageNum, this.props.pageSize)
     }
     render() {
+
+        if (!this.props.isAuthenticated) return (<Redirect to={'/login'}/>)
+
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}
@@ -39,10 +45,12 @@ let mapStateToProps = (state) => ({
     followingInProgress: state.usersPage.followingInProgress,
 })
 
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    getUsers
-})
-(UsersContainer)
+export default compose(
+    connect(mapStateToProps, {
+        follow,
+        unfollow,
+        getUsers
+    }),
+    withAuthRedirect
+)(UsersContainer)
 

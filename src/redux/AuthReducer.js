@@ -8,7 +8,7 @@ let initialState = {
     login: null,
     isAuthenticated: false,
 }
-const authenticReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -31,4 +31,4 @@ export const authAccess = () => (dispatch) => {
         }
     )
 }
-export default authenticReducer
+export default authReducer

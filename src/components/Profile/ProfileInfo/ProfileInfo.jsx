@@ -1,5 +1,6 @@
 import styles from "./ProfileInfo.module.css";
 import Preloader from "../../../commonFiles/preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -12,6 +13,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={styles.profilePhoto}>
                 <img src={props.profile.photos.large}/>
+                <ProfileStatus {...props}/>
             </div>
         </div>
     )

@@ -1,19 +1,15 @@
-import {addMessageAC, updateNewMessageBodyAC,} from "../../redux/DialogsPageReducer";
+import {addMessage, updateNewMessageBody,} from "../../redux/DialogsPageReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => ({
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage,
 })
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addMessage: () => {
-            dispatch(addMessageAC())
-        },
-        updateNewMessageBody: (newBody) => {
-            dispatch(updateNewMessageBodyAC(newBody))
-        }
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+export default compose(
+    connect(mapStateToProps, {addMessage, updateNewMessageBody}),
+    withAuthRedirect
+)(Dialogs)
 
