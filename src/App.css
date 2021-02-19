@@ -1,11 +1,11 @@
 .app-study {
     display: grid;
     grid-template-areas:
-  " head head"
-  " nav pro";
+  " head head head"
+  " nav pro navR";
     grid-template-rows: 90px 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 10px;
+    grid-template-columns: 2fr 8fr 2fr;
+    grid-gap: 2px;
 }
 
 .app-study-content {

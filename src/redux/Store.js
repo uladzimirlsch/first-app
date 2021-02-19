@@ -11,7 +11,7 @@ let reducerMass = combineReducers({
     dialogsPage: DialogsPageReducer,
     sidebarPage: SidebarPageReducer,
     usersPage: UsersPageReducer,
-    authentication: AuthReducer,
+    auth: AuthReducer,
 })
 let store = createStore(reducerMass, applyMiddleware(thunkMiddleware))
 

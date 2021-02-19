@@ -1,11 +1,18 @@
 import styles from "./Dialogs.module.css"
 import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
-import {Redirect} from "react-router-dom";
+import TextArea from "../Login/TextArea";
 
 const Dialogs = (props) => {
 	let dialogsElements = props.dialogsPage.dialogs.map((d) => (<DialogItem id={d.id} name={d.name} key={d.id}/>))
 	let messageElements = props.dialogsPage.messages.map((m) => (<MessageItem message={m.message} key={m.id}/>))
+
+	const updateNewMessageBody = (event) => {
+		props.updateNewMessageBody(event.target.value)
+	}
+
+	const addMessage = () => {
+		props.addMessage()}
 
 	return (
 		<div className={styles.dialogs}>
@@ -15,16 +22,13 @@ const Dialogs = (props) => {
 			<div className={styles.messages_item}>
 				{messageElements}
 				<div>
+					{/*<TextArea/>*/}
 					<textarea value={props.dialogsPage.newMessageBody}
-							  onChange={(event) => {
-								  props.updateNewMessageBody(event.target.value)
-							  }}
+							  onChange={updateNewMessageBody}
 							  placeholder={'Add message'}/>
 				</div>
 				<div>
-					<button onClick={() => {
-						props.addMessage()
-					}}>Send
+					<button onClick={addMessage}>Send
 					</button>
 				</div>
 			</div>
