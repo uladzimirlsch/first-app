@@ -9,25 +9,25 @@ import MyMusic from "./components/MyMusic/MyMusic";
 import Settings from "./components/Settings/Settings";
 import {Route} from "react-router-dom";
 import NavbarRight from "./components/NavbarRight/NavbarRight";
-import FormContainer from "./components/Login/FormContainer";
+import Login from "./components/Login/LoginForm";
 
 
 const App = () => {
-	return (
-			<div className={"app-study"}>
-				<HeaderContainer/>
-				<Navbar/>
-				<NavbarRight/>
-				<div className={'app-study-content'}>
-					<Route path={'/profile/:userId?'} render={() => <ProfileContainer />}/>
-					<Route path={'/dialogs'} render={() => <DialogsContainer />}/>
-					<Route path={'/users'} render={() => <UsersContainer />}/>
-					<Route path={'/login'} render={() => <FormContainer />}/>
-					<Route path={'/news'} render={() => <News/>}/>
-					<Route path={'/music'} render={() => <MyMusic/>}/>
-					<Route path={'/settings'} render={() => <Settings/>}/>
-				</div>
-			</div>
-	);
+    return (
+        <div className={"app-study"}>
+            <HeaderContainer/>
+            <Navbar/>
+            <NavbarRight/>
+            <div className={'app-study-content'}>
+                <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
+                <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
+                <Route path={'/users'} render={() => <UsersContainer/>}/>
+                <Route path={'/login'} render={() => <Login/>}/>
+                <Route path={'/news'} render={() => <News/>}/>
+                <Route path={'/music'} render={() => <MyMusic/>}/>
+                <Route path={'/settings'} render={() => <Settings/>}/>
+            </div>
+        </div>
+    );
 }
 export default App;

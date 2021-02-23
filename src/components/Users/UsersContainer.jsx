@@ -12,9 +12,11 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
+
     onPageChange = (pageNum) => {
         this.props.getUsers(pageNum, this.props.pageSize)
     }
+
     render() {
 
         if (!this.props.isAuthenticated) return (<Redirect to={'/login'}/>)
@@ -22,15 +24,15 @@ class UsersContainer extends React.Component {
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}
-                <Users totalCount={this.props.totalCount}
+
+                <Users users={this.props.users}
+                       totalCount={this.props.totalCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}
                        onPageChange={this.onPageChange}
-                       users={this.props.users}
                        unfollow={this.props.unfollow}
                        follow={this.props.follow}
-                       followingInProgress={this.props.followingInProgress}
-                />
+                       followingInProgress={this.props.followingInProgress}/>
             </>
         )
     }

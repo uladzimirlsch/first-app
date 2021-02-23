@@ -1,36 +1,57 @@
 import React from 'react';
 import styles from './Form.module.css'
+import {Field, reduxForm} from "redux-form";
+import {connect} from "react-redux";
+import {logIn} from "../../redux/AuthReducer";
+import {Redirect} from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const {handleSubmit} = props
     return (
-        <form className={styles.formControl}>
-            <label htmlFor={'name'}>Fist name</label>
-            <input type={'text'} id={'name'} name={'name'}/>
-
-            <label htmlFor={'name'}>Last name</label>
-            <input type={'text'} id={'name'} name={'name'}/>
+        <form onSubmit={handleSubmit} className={styles.formControl}>
 
             <label htmlFor={'email'}>Email</label>
-            <input type={'email'} id={'email'} name={'email'}/>
+            <Field component={'input'}
+                   type={'email'}
+                   id={'email'}
+                   name={'email'}/>
 
             <label htmlFor={'password'}>Password</label>
-            <input type={'password'} id={'password'} name={'password'}/>
+            <Field component={'input'}
+                   type={'password'}
+                   id={'password'}
+                   name={'password'}/>
 
-            <label htmlFor={'checkbox'}>Touch</label>
-            <input type={'checkbox'}/>
+            <label htmlFor={'checkbox'}>Remember Me</label>
+            <Field component={'input'}
+                   type={'checkbox'}
+                   id={'checkbox'}
+                   name={'checkbox'}/>
 
             <button type={'submit'}>Sign up</button>
         </form>
     );
 };
 
-const Login = (props) => (
-    <div>
-        <h1>Sign up</h1>
-        <LoginForm/>
-    </div>
-);
+const ReduxLoginForm = reduxForm({form: 'contact'})(LoginForm)
 
+const Login = (props) => {
+    const onSubmit = (values) => {
+        props.logIn(values.email, values.password, values.rememberMe)
+    }
 
+    if (props.isAuthenticated) return (<Redirect to={'/profile'}/>)
 
-export default Login;
+    return (
+        <div>
+            <h1>Sign up</h1>
+            <ReduxLoginForm onSubmit={onSubmit}/>
+        </div>
+    );
+}
+
+let mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+})
+
+export default connect(mapStateToProps, {logIn})(Login);

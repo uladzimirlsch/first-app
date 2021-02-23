@@ -15,13 +15,14 @@ const Users = (props) => {
         <div>
             <div>
                 {pages.map(page => (
-                    <span className={props.currentPage === page && styles.activePage}
-                          onClick={(e) => {
+                    <span className={(props.currentPage === page) && (styles.activePage)}
+                          onClick={() => {
                               props.onPageChange(page)
-                          }}>{page}</span>
-                ))}
+                          }} key={page.id}>{page}</span>))}
             </div>
-            {props.users.map(u => <div key={u.id}>
+
+            {props.users.map(u => (
+                <div key={u.id}>
                     <div className={styles.userPhoto}>
                         <NavLink to={'/profile/' + u.id}>
                             <img src={u.photos.small || userImage} alt={''}/>
@@ -29,16 +30,20 @@ const Users = (props) => {
                         <div className={styles.userButton}>
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
+                                          onClick={() => {
+                                              props.unfollow(u.id)
+                                          }}>Unfollow</button>
+
                                 : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {props.follow(u.id)}}>Follow</button>}
+                                          onClick={() => {
+                                              props.follow(u.id)
+                                          }}>Follow</button>}
                         </div>
                     </div>
                     <div>{u.name} status: {u.status}</div>
-                </div>
-            )
-            }
+                </div>))}
         </div>
     )
 }
+
 export default Users;

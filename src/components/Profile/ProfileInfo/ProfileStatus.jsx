@@ -3,10 +3,11 @@ import Preloader from "../../../commonFiles/preloader/Preloader";
 import * as React from "react";
 
 class ProfileStatus extends React.Component {
-    d
+
     // if (!props.profile) {
     //     return <Preloader />
     // }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -45,21 +46,21 @@ class ProfileStatus extends React.Component {
     render() {
         return (
             <>
-                {!this.state.editMode &&
-                <div className={styles.profileStatus}>
-                    <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Hello'}</span>
-                </div>}
-                {this.state.editMode &&
-                <div>
-                    <input onChange={this.onActivatedChange}
-                           autoFocus={true}
-                           onBlur={this.deactivateEditMode}
-                           value={this.state.status}/>
-                </div>
+                {!this.state.editMode
+                    ? <div className={styles.profileStatus}>
+                        <span onDoubleClick={this.activateEditMode}>{this.props.status || 'No status'}</span>
+                      </div>
+                    : <div>
+                        <input onChange={this.onActivatedChange}
+                               autoFocus={true}
+                               onBlur={this.deactivateEditMode}
+                               value={this.state.status}/>
+                      </div>
                 }
             </>
         )
     }
+
 }
 
 export default ProfileStatus;

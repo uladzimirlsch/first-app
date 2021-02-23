@@ -39,7 +39,7 @@ const EnrollmentForm = (props) => {
             .required('Course is required!'),
         skills: yup
             .array()
-            .required('Skill is required!'),
+            .min(1,'Skill is required!'),
         courseDate: yup
             .date()
             .required('Date is required!')
