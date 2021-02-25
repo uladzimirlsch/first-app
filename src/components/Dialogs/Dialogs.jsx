@@ -2,7 +2,7 @@ import styles from "./Dialogs.module.css"
 import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 import React from "react";
-import ReduxTextAreaForm from "./NewTextArea";
+import ReduxTextAreaForm from "../../Forms/NewTextArea";
 
 const Dialogs = (props) => {
 

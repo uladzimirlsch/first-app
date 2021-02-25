@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {maxLength15, minLength2} from "../../utilities/Validate";
+import {maxLength15, minLength2} from "./Validate";
 
 const required = value => (value || typeof value === 'number' ? undefined : 'Required')
 

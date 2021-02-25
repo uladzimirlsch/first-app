@@ -1,6 +1,6 @@
 import styles from "./ProfileInfo.module.css";
 import Preloader from "../../../commonFiles/preloader/Preloader";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusHooks from "./ProfileStatusHooks";
 
 const ProfileInfo = (props) => {
 
@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={styles.profilePhoto}>
                 <img src={props.profile.photos.large} alt={''}/>
-                <ProfileStatus {...props}/>
+                <ProfileStatusHooks {...props}/>
             </div>
         </div>
     )

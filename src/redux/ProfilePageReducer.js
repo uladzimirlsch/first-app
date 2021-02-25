@@ -7,7 +7,6 @@ const SET_USER_STATUS = 'SET-USER-STATUS'
 let initialState = {
     post: [
         {id: 1, message: 'Hello. It is my first post.', likes: 25},
-        {id: 2, message: "That's a good network.", likes: 38},
     ],
     profile: null,
     status: '',
@@ -18,7 +17,7 @@ const profilePageReducer = (state = initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                post: [...state.post, {id: 4, message: action.newMessage, likes: 0}],
+                post: [...state.post, {id: 2, message: action.newMessage, likes: 0}],
             }
         case SET_USER_PROFILE:
             return {

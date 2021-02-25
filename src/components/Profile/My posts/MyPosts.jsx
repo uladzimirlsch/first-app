@@ -1,26 +1,29 @@
 import React from "react";
 import one from "./MyPosts.module.css"
 import Post from "./Post/Post";
-import ReduxTextAreaForm from "../../Dialogs/NewTextArea";
+import ReduxTextAreaForm from "../../../Forms/NewTextArea";
 
 
 const MyPosts = (props) => {
-	let myPost = props.post.map(posts => (<Post message={posts.message} likes={posts.likes} key={posts.id}/>));
 
-	const addPost = (values) => {
-		props.addPost(values.newMessage)
-	}
+    let myPost = props.post.map(posts => (
+        <Post message={posts.message} likes={posts.likes} key={posts.id}/>));
 
-	return (
-		<div className={one.itemBlock}>
-			<h3>My Posts</h3>
-			<div>
-				<ReduxTextAreaForm onSubmit={addPost}/>
-			</div>
-			<div>
-				{myPost}
-			</div>
-		</div>
-	)
+    const addPost = (value) => {
+        props.addPost(value.newMessage)
+    }
+
+    return (
+        <div className={one.itemBlock}>
+            <h3>My Posts</h3>
+            <div>
+                <ReduxTextAreaForm onSubmit={addPost}/>
+            </div>
+            <div>
+                {myPost}
+            </div>
+        </div>
+    )
 };
+
 export default MyPosts;
