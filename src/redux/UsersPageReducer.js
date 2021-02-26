@@ -75,39 +75,36 @@ const setIsFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching})
 
 const setFollowingIsProgress = (isFetching, userId) => ({type: TOGGLE_FOLLOWING_PROGRESS, isFetching, userId})
 
-export const requestUsers =(page, pageSize) => {
-    return (dispatch) => {
+export const requestUsers = (page, pageSize) => {
+    return async (dispatch) => {
         dispatch(setIsFetching(true))
         dispatch(setCurrentPage(page))
-        usersAPI.requestUsers(page, pageSize).then(r => {
-                dispatch(setUsers(r.data.items))
-                dispatch(setTotalUsersCount(r.data.totalCount))
-
-                dispatch(setIsFetching(false))
-            }
-        )
+        let response = await usersAPI.requestUsers(page, pageSize)
+        dispatch(setUsers(response.data.items))
+        dispatch(setTotalUsersCount(response.data.totalCount))
+        dispatch(setIsFetching(false))
     }
 }
 
 export const follow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFollowingIsProgress(true, userId))
-        usersAPI.follow(userId).then(r => {
-                (r.data.resultCode === 0) && dispatch(acceptFollow(userId))
-                dispatch(setFollowingIsProgress(false, userId))
-            }
-        )
+        let response = await usersAPI.follow(userId)
+        if (response.data.resultCode === 0) {
+            dispatch(acceptFollow(userId))
+            dispatch(setFollowingIsProgress(false, userId))
+        }
     }
 }
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFollowingIsProgress(true, userId))
-        usersAPI.unfollow(userId).then(r => {
-                (r.data.resultCode === 0) && dispatch(acceptUnfollow(userId))
-                dispatch(setFollowingIsProgress(false, userId))
-            }
-        )
+        let response = await usersAPI.unfollow(userId)
+        if (response.data.resultCode === 0) {
+            dispatch(acceptUnfollow(userId))
+            dispatch(setFollowingIsProgress(false, userId))
+        }
     }
 }
 

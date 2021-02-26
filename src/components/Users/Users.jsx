@@ -1,47 +1,16 @@
 import React from "react";
-import styles from "./Users.module.css";
-import userImage from "../../assets/images/avatar-siba.jpg";
-import {NavLink} from "react-router-dom";
+import Pagination from "./Pagination";
+import User from "./User";
 
 const Users = (props) => {
-
-    let pagesCount = Math.ceil(props.totalCount / props.pageSize)
-
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
     return (
         <div>
-            <div>
-                {pages.map(page => (
-                    <span className={(props.currentPage === page) && (styles.activePage)}
-                          onClick={() => {
-                              props.onPageChange(page)
-                          }} key={page.id}>{page}</span>))}
-            </div>
-
-            {props.users.map(u => (
-                <div key={u.id}>
-                    <div className={styles.userPhoto}>
-                        <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small || userImage} alt={''}/>
-                        </NavLink>
-                        <div className={styles.userButton}>
-                            {u.followed
-                                ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              props.unfollow(u.id)
-                                          }}>Unfollow</button>
-
-                                : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              props.follow(u.id)
-                                          }}>Follow</button>}
-                        </div>
-                    </div>
-                    <div>{u.name} status: {u.status}</div>
-                </div>))}
+            <Pagination {...props}/>
+            {props.users.map(u => (<User key={u.id}
+                                         user={u}
+                                         followingInProgress={props.followingInProgress}
+                                         unfollow={props.unfollow}
+                                         follow={props.follow}/>))}
         </div>
     )
 }

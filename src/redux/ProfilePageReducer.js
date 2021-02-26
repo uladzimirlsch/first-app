@@ -42,29 +42,25 @@ const setUserStatus = (status) => ({type: SET_USER_STATUS, status})
 
 
 export const getUserProfile = (userId) => {
-    return (dispatch) => {
-        profileAPI.getUserProfile(userId).then(r => {
-                dispatch(setUserProfile(r.data))
-            }
-        )
+    return async (dispatch) => {
+        let response = await profileAPI.getUserProfile(userId)
+        dispatch(setUserProfile(response.data))
     }
 }
 
 export const getUserStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getUserStatus(userId).then(r => {
-                dispatch(setUserStatus(r.data))
-            }
-        )
+    return async (dispatch) => {
+        let response = await profileAPI.getUserStatus(userId)
+        dispatch(setUserStatus(response.data))
     }
 }
 
 export const updateUserStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateUserStatus(status).then(r => {
-                (r.data.resultCode === 0) && dispatch(setUserStatus(status))
-            }
-        )
+    return async (dispatch) => {
+        let response = await profileAPI.updateUserStatus(status)
+        if (response.data.resultCode === 0) {
+            dispatch(setUserStatus(status))
+        }
     }
 }
 
