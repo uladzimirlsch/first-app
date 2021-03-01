@@ -13,6 +13,7 @@ const NewTextArea = (props) => {
                    label={'Message'}
                    validate={[required, maxLength15, minLength2]}/>
             <button type={'submit'}>Send</button>
+            <button type={'submit'}>Delete</button>
         </form>
     );
 };

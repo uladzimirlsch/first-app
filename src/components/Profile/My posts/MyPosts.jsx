@@ -13,6 +13,10 @@ const MyPosts = (props) => {
         props.addPost(value.newMessage)
     }
 
+    const deletePostPost = (value) => {
+        props.deletePost(value.postId)
+    }
+
     return (
         <div className={one.itemBlock}>
             <h3>My Posts</h3>

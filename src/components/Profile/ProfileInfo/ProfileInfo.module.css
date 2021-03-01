@@ -1,8 +1,9 @@
 .profile img {
     width: 60%;
 }
-.profilePhoto {
-    width: 20%
+.profilePhoto img{
+    width: 20%;
+    border-radius: 50%;
 }
 .profileStatus {
 
