@@ -8,13 +8,7 @@ let initialState = {
         {id: 4, name: 'Andrew'},
         {id: 5, name: 'Marina'},
     ],
-    messages: [
-        {id: 1, message: 'Hello!'},
-        {id: 2, message: 'How are you?'},
-        {id: 3, message: 'Have a nice day.'},
-        {id: 4, message: 'I miss you..'},
-        {id: 5, message: 'Happy New Year!'}
-    ],
+    messages: [{}],
 }
 
 const dialogsPageReducer = (state = initialState, action) => {
@@ -22,7 +16,7 @@ const dialogsPageReducer = (state = initialState, action) => {
         case ADD_MESSAGE:
             return {
                 ...state,
-                messages: [...state.messages, {id: 6, message: action.newMessage}],
+                messages: [...state.messages, {id: 1, message: action.newMessage}],
             }
         default:
             return state

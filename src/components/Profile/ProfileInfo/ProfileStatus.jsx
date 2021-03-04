@@ -1,5 +1,6 @@
 import styles from "./ProfileInfo.module.css";
 import * as React from "react";
+import {Field, Form} from "formik";
 
 class ProfileStatus extends React.Component {
 
@@ -63,3 +64,4 @@ class ProfileStatus extends React.Component {
 }
 
 export default ProfileStatus;
+

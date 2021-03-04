@@ -9,4 +9,5 @@ const MessageItem = (props) => {
         </div>
     )
 };
+
 export default MessageItem;

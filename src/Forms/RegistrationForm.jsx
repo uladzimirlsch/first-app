@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import FormikControl from "./FormikControl";
 
 
-const RegistrationForm = (props) => {
+const RegistrationForm = () => {
 
     const options = [
         {key: 'Email', value: 'emailmoc'},
@@ -16,6 +16,7 @@ const RegistrationForm = (props) => {
         password: '',
         confirmPassword: '',
         modeOfContacts: '',
+        comments: '',
         phone: '',
     }
 
@@ -32,6 +33,9 @@ const RegistrationForm = (props) => {
             .string()
             .oneOf([yup.ref('password'), ''], 'Password must match')
             .required('Password is not match'),
+        comments: yup
+            .string('Enter text')
+            .required('Text is required!'),
         modeOfContacts: yup
             .string()
             .required(),
@@ -68,6 +72,10 @@ const RegistrationForm = (props) => {
                                    type={'password'}
                                    label={'Confirm password'}
                                    name={'confirmPassword'}/>
+                    <FormikControl control={'textarea'}
+                                   as={'textarea'}
+                                   label={'Comments'}
+                                   name={'comments'}/>
                     <FormikControl control={'radio'}
                                    label={'Mode of contacts'}
                                    name={'modeOfContacts'}

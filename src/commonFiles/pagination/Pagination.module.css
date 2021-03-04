@@ -1,3 +1,10 @@
-.activePage {
+
+.pageNumber {
+    border: 1px solid black;
+}
+.pageNumber.activePage {
     font: 700 18px/1.2 'Roboto' , sans-serif;
+}
+.pag {
+    padding: 10px;
 }

@@ -7,9 +7,7 @@ const SET_USER_STATUS = 'SET-USER-STATUS'
 const SET_LOAD_PHOTOS = 'SET-LOAD-PHOTOS'
 
 let initialState = {
-    post: [
-        {id: 1, message: 'Hello. It is my first post.', likes: 25},
-    ],
+    post: [{}],
     profile: null,
     status: '',
 }
@@ -19,7 +17,7 @@ const profilePageReducer = (state = initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                post: [...state.post, {id: 2, message: action.newMessage, likes: 0}],
+                post: [...state.post, {id: 1, message: action.newPost}],
             }
         case DELETE_POST:
             return {
@@ -46,7 +44,7 @@ const profilePageReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = (newMessage) => ({type: ADD_POST, newMessage})
+export const addPost = (newPost) => ({type: ADD_POST, newPost})
 
 export const deletePost = (postId) => ({type: ADD_POST, postId})
 
@@ -59,21 +57,21 @@ const setLoadPhotos = (photos) => ({type: SET_LOAD_PHOTOS, photos})
 
 export const getUserProfile = (userId) => {
     return async (dispatch) => {
-        let response = await profileAPI.getUserProfile(userId)
+        const response = await profileAPI.getUserProfile(userId)
         dispatch(setUserProfile(response.data))
     }
 }
 
 export const getUserStatus = (userId) => {
     return async (dispatch) => {
-        let response = await profileAPI.getUserStatus(userId)
+        const response = await profileAPI.getUserStatus(userId)
         dispatch(setUserStatus(response.data))
     }
 }
 
 export const updateUserStatus = (status) => {
     return async (dispatch) => {
-        let response = await profileAPI.updateUserStatus(status)
+       const response = await profileAPI.updateUserStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setUserStatus(status))
         }
@@ -82,12 +80,20 @@ export const updateUserStatus = (status) => {
 
 export const loadPhoto = (file) => {
     return async (dispatch) => {
-        let response = await profileAPI.loadPhoto(file)
+        const response = await profileAPI.loadPhoto(file)
         if (response.data.resultCode === 0) {
             dispatch(setLoadPhotos(response.data.data.photos))
         }
     }
 }
-
+export const saveDataProfile = (profile, getState) => {
+    // const user = getState().auth.id
+    return async (dispatch) => {
+        const response = await profileAPI.saveDataProfile(profile)
+        if (response.data.resultCode === 0) {
+            // dispatch(getUserProfile(user))
+        }
+    }
+}
 
 export default profilePageReducer

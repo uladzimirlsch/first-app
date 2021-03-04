@@ -11,6 +11,9 @@ input + label {
     margin-right: 20px;
 }
 
+button + label {
+    margin-top: 1rem;
+}
 
 input[type='text'],
 input[type='email'],
@@ -37,4 +40,7 @@ select {
     font: 400 14px/1 sans-serif;
     color: red;
     padding: 5px;
+}
+.aboutMeToo {
+    padding: 10px 50px
 }

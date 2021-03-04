@@ -9,10 +9,11 @@ const Post = (props) => {
                 </div>
                 {props.message}
                 <div>
-                    Like: {props.likes}
+                    Like {props.likes}
                 </div>
             </div>
         </div>
     )
 };
+
 export default Post;

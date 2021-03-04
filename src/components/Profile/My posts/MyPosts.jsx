@@ -1,7 +1,7 @@
 import React from "react";
 import one from "./MyPosts.module.css"
 import Post from "./Post/Post";
-import ReduxTextAreaForm from "../../../Forms/NewTextArea";
+import PostForm from "./PostForm";
 
 
 const MyPosts = (props) => {
@@ -10,7 +10,7 @@ const MyPosts = (props) => {
         <Post message={posts.message} likes={posts.likes} key={posts.id}/>));
 
     const addPost = (value) => {
-        props.addPost(value.newMessage)
+        props.addPost(value.newPost)
     }
 
     const deletePostPost = (value) => {
@@ -21,7 +21,7 @@ const MyPosts = (props) => {
         <div className={one.itemBlock}>
             <h3>My Posts</h3>
             <div>
-                <ReduxTextAreaForm onSubmit={addPost}/>
+                <PostForm onSubmit={addPost} />
             </div>
             <div>
                 {myPost}

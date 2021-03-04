@@ -1,57 +1,67 @@
 import React from 'react';
-import styles from './Form.module.css'
-import {Field, reduxForm} from "redux-form";
-import {connect} from "react-redux";
-import {logIn} from "../../redux/AuthReducer";
-import {Redirect} from "react-router-dom";
+import styles from '../../Forms/Form.module.css'
+import * as yup from "yup";
+import {Field, Form, Formik} from "formik";
+import FormikControl from "../../Forms/FormikControl";
+
+const initialValues = {
+    email: '',
+    password: '',
+    // confirmPassword: '',
+}
+
+const validationSchema = yup.object({
+    email: yup
+        .string()
+        .email('Invalid email format!')
+        .required('E-mail is required!'),
+    password: yup
+        .string()
+        .min(8, 'Password should be of minimum 8 characters length!')
+        .required('Password is required!'),
+    // confirmPassword: yup
+    //     .string()
+    //     .oneOf([yup.ref('password'), ''], 'Password must match')
+    //     .required('Password is not match'),
+})
 
 const LoginForm = (props) => {
-    const {handleSubmit} = props
     return (
-        <form onSubmit={handleSubmit} className={styles.formControl}>
+        <Formik initialValues={initialValues}
+                onSubmit={props.onSubmit}
+                validationSchema={validationSchema}>
+            {formik => {
+                return <Form>
+                    <FormikControl control={'input'}
+                                   type={'email'}
+                                   label={'Email Address'}
+                                   name={'email'}/>
+                    <FormikControl control={'input'}
+                                   type={'password'}
+                                   label={'Password'}
+                                   name={'password'}/>
+                    {/*<FormikControl control={'input'}*/}
+                    {/*               type={'password'}*/}
+                    {/*               label={'Confirm password'}*/}
+                    {/*               name={'confirmPassword'}/>*/}
 
-            <label htmlFor={'email'}>Email</label>
-            <Field component={'input'}
-                   type={'email'}
-                   id={'email'}
-                   name={'email'}/>
-
-            <label htmlFor={'password'}>Password</label>
-            <Field component={'input'}
-                   type={'password'}
-                   id={'password'}
-                   name={'password'}/>
-
-            <label htmlFor={'checkbox'}>Remember Me</label>
-            <Field component={'input'}
-                   type={'checkbox'}
-                   id={'checkbox'}
-                   name={'checkbox'}/>
-
-            <button type={'submit'}>Sign up</button>
-        </form>
+                    <div className={styles.formControl}>
+                        <label htmlFor={'checkbox'}>Remember Me</label>
+                        <Field type={'checkbox'}
+                               id={'checkbox'}
+                               name={'checkbox'}/>
+                    </div>
+                    {props.captchaUrl && <img src={props.captchaUrl} alt={''}/>}
+                    {props.captchaUrl && <FormikControl control={'input'}
+                                                        type={'text'}
+                                                        name={'captcha'}
+                                                        placeholder={'enter symbols'}/>}
+                    <button type={'submit'} disabled={!formik.isValid}>Submit</button>
+                </Form>
+            }
+            }
+        </Formik>
     );
 };
 
-const ReduxLoginForm = reduxForm({form: 'contact'})(LoginForm)
-
-const Login = (props) => {
-    const onSubmit = (values) => {
-        props.logIn(values.email, values.password, values.rememberMe)
-    }
-
-    if (props.isAuthenticated) return (<Redirect to={'/profile'}/>)
-
-    return (
-        <div>
-            <h1>Sign up</h1>
-            <ReduxLoginForm onSubmit={onSubmit}/>
-        </div>
-    );
-}
-
-let mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated,
-})
-
-export default connect(mapStateToProps, {logIn})(Login);
+export default LoginForm

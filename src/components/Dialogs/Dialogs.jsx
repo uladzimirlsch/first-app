@@ -2,18 +2,18 @@ import styles from "./Dialogs.module.css"
 import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 import React from "react";
-import ReduxTextAreaForm from "../../Forms/NewTextArea";
+import MessageForm from "./MessageForm";
 
 const Dialogs = (props) => {
 
     let dialogsElements = props.dialogsPage.dialogs.map((d) => (
-    	<DialogItem id={d.id} name={d.name} key={d.id}/>))
+        <DialogItem id={d.id} name={d.name} key={d.id}/>))
 
     let messageElements = props.dialogsPage.messages.map((m) => (
         <MessageItem id={m.id} message={m.message} key={m.id}/>))
 
-    const addMessage = (values) => {
-        props.addMessage(values.newMessage)
+    const addMessage = (value) => {
+        props.addMessage(value.newMessage)
     }
 
     return (
@@ -22,10 +22,10 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={styles.messages_item}>
-                {messageElements}
                 <div>
-                    <ReduxTextAreaForm onSubmit={addMessage}/>
+                    <MessageForm onSubmit={addMessage}/>
                 </div>
+                {messageElements}
             </div>
         </div>
     )
