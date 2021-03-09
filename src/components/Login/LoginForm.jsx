@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../../Forms/Form.module.css'
+import styles from '../../forms/Form.module.css'
 import * as yup from "yup";
 import {Field, Form, Formik} from "formik";
-import FormikControl from "../../Forms/FormikControl";
+import FormikControl from "../../forms/FormikControl";
 
 const initialValues = {
     email: '',

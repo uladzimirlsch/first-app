@@ -2,12 +2,12 @@ import React, {lazy, Suspense} from "react";
 import './App.css';
 import {Route} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Navbar from "./components/Navbar/Navbar";
+import NavbarLeft from "./components/Navbar/NavbarLeft";
 import UsersContainer from "./components/Users/UsersContainer";
 import News from "./components/News/News";
 import MyMusic from "./components/MyMusic/MyMusic";
 import Settings from "./components/Settings/Settings";
-import NavbarRight from "./components/NavbarRight/NavbarRight";
+import NavbarRight from "./components/Navbar/NavbarRight";
 import Preloader from "./commonFiles/preloader/Preloader";
 import LoginContainer from "./components/Login/LoginContainer";
 
@@ -18,7 +18,7 @@ const App = () => {
     return (
         <div className={"app-study"}>
             <HeaderContainer/>
-            <Navbar/>
+            <NavbarLeft/>
             <NavbarRight/>
             <div className={'app-study-content'}>
                 <Suspense fallback={<Preloader/>}>

@@ -1,8 +1,8 @@
 import React from 'react';
 import * as yup from "yup";
 import {Field, Form, Formik} from "formik";
-import FormikControl from "../../../Forms/FormikControl";
-import styles from "../../../Forms/Form.module.css";
+import FormikControl from "../../../forms/FormikControl";
+import styles from "../../../forms/Form.module.css";
 
 const ProfileInfoEditMode = (props) => {
 

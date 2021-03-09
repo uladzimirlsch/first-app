@@ -1,11 +1,11 @@
 import styles from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
-const Navbar = () => {
+const NavbarLeft = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.item}>
-                <NavLink to={'/profile'} activeClassName={styles.activeLink}>Profile</NavLink>
+                <NavLink to={'/profile'} activeClassName={styles.activeLink}>My profile</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink to={'/dialogs'} activeClassName={styles.activeLink}>Messages</NavLink>
@@ -25,4 +25,4 @@ const Navbar = () => {
         </nav>
     )
 };
-export default Navbar;
+export default NavbarLeft;

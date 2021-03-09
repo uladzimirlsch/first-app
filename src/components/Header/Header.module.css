@@ -1,11 +1,14 @@
 .header {
     background: aliceblue;
     grid-area: head;
+    position: fixed;
+    width: 100%;
 }
 
 .header img {
-    width: 60px;
-    padding: 15px 20px;
+    width: 50px;
+    height: 50px;
+    padding: 5px 20px;
 }
 
 .loginBlock {

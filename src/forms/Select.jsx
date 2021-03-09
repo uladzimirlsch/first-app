@@ -11,7 +11,7 @@ const Select = (props) => {
             <Field as={'select'} name={name} id={name} {...rest}>
                 {
                     options.map(option => (
-                        <option key={option.value} value={option.value}>{option.key}</option>)
+                        <option key={option.key} value={option.value}>{option.key}</option>)
                     )
                 }
             </Field>

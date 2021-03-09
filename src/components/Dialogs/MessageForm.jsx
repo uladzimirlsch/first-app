@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from "../../Forms/Form.module.css";
+import styles from "../../forms/Form.module.css";
 import {Form, Formik} from 'formik';
 import * as yup from 'yup';
-import FormikControl from "../../Forms/FormikControl";
+import FormikControl from "../../forms/FormikControl";
 
 
 const MessageForm = (props) => {
@@ -25,8 +25,8 @@ const MessageForm = (props) => {
                 return <Form>
                     <FormikControl control={'textarea'}
                                    as={'textarea'}
-                                   label={'Message'}
-                                   name={'newMessage'}/>
+                                   name={'newMessage'}
+                                   placeholder={'Add message'}/>
                     <button className={styles.formControl}
                             type={'submit'}
                             disabled={!formik.isValid}>Send</button>

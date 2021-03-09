@@ -6,11 +6,11 @@ import MessageForm from "./MessageForm";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map((d) => (
-        <DialogItem id={d.id} name={d.name} key={d.id}/>))
+    let dialogsElements = props.dialogs.map((d) => (
+        <DialogItem id={d.id} name={d.name}/>))
 
-    let messageElements = props.dialogsPage.messages.map((m) => (
-        <MessageItem id={m.id} message={m.message} key={m.id}/>))
+    let messageElements = props.messages.map((m) => (
+        <MessageItem id={m.id} message={m.message}/>))
 
     const addMessage = (value) => {
         props.addMessage(value.newMessage)

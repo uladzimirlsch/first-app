@@ -27,18 +27,15 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={styles.profile}>
-            {/*<div>*/}
-            {/*    <img*/}
-            {/*        src={"https://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg"}*/}
-            {/*        alt=""/>*/}
-            {/*</div>*/}
             <div className={styles.profilePhoto}>
                 <img src={props.profile.photos.large || userImage} alt={''}/>
                 {props.isOwner && <input type={'file'} onChange={addPhoto}/>}
             </div>
             <div className={styles.aboutMe}>
                 <b>{props.profile.fullName}</b>
+
                 <ProfileStatusHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
+
             </div>
             {editMode
                 ? <ProfileInfoEditMode initialValues={props.profile} onSubmit={onSubmit} {...props}/>
@@ -51,7 +48,6 @@ const ProfileInfo = (props) => {
 
 const ProfileBlock = (props) => {
     return <div className={styles.aboutMe}>
-        {props.isOwner && <button onClick={props.upEditMode}>edit</button>}
         <div className={styles.aboutMeToo}>
             <b>About me: </b>{props.profile.aboutMe}
         </div>
@@ -63,11 +59,12 @@ const ProfileBlock = (props) => {
         </div>
         <div className={styles.aboutMeToo}>
             <b>Contacts: </b>{Object.keys(props.profile.contacts).map(keys => {
-                return <Contacts key={keys.id} contactItem={keys} contactValue={props.profile.contacts[keys]}/>
+                return <Contacts key={keys} contactItem={keys} contactValue={props.profile.contacts[keys]}/>
             }
         )
         }
         </div>
+        {props.isOwner && <button onClick={props.upEditMode}>edit</button>}
     </div>
 }
 

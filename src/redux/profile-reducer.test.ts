@@ -1,4 +1,4 @@
-import profilePageReducer, {addPost} from "./ProfilePageReducer";
+import profilePageReducer, {addPost} from "./profile-reducer";
 
 let state = {
     post: [
@@ -10,6 +10,8 @@ let state = {
 test('length of posts should be incremented', () => {
     let action = addPost('Hello')
 
+    // @ts-ignore
     let newState = profilePageReducer({state},{action})
+    // @ts-ignore
     expect(newState.post.length).toBe(3)
 })

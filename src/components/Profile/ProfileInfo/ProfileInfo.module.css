@@ -3,19 +3,18 @@
 }
 .profilePhoto img{
     width: 20%;
-    border-radius: 50%;
     padding: 30px;
 }
 .profileStatus {
-    font: 600 20px/1.2 sans-serif;
-    padding: 10px 0;
+    font: 600 22px/1.2 sans-serif;
+    padding: 5px 0;
 }
 .aboutMe {
-    padding: 20px 30px
+    padding: 5px 30px 0
 }
 .aboutMeToo {
     padding: 10px 0
 }
 .aboutContacts {
-    padding: 10px 40px;
+    padding: 10px 40px 0
 }

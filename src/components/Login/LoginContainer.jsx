@@ -1,10 +1,11 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {logIn} from "../../redux/AuthReducer";
+import {logIn} from "../../redux/auth-reducer";
 import LoginForm from "./LoginForm";
 
 const LoginContainer = (props) => {
+
     const onSubmit = (values) => {
         props.logIn(values.email, values.password, values.rememberMe, values.captcha)
     }

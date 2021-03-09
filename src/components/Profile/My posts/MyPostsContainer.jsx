@@ -1,10 +1,11 @@
-import {addPost, deletePost} from "../../../redux/ProfilePageReducer";
+import {addPost, deletePost} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
 	return {
-		post: state.profilePage.post,
+		posts: state.profile.posts,
+		profile: state.profile.profile
 	}
 }
 export default  connect(mapStateToProps, {addPost, deletePost})(MyPosts)

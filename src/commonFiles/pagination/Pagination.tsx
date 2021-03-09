@@ -1,20 +1,26 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from "./Pagination.module.css";
 import {useState} from "react";
 import cn from "classnames";
 
-const Pagination = (props) => {
+type PropsType = {
+    currentPage: number
+    onPageChange: (page: number) => void
+    pageSize: number
+    totalItemCount: number
+    pageLimit?: number
+}
 
-    let pagesCount = Math.ceil(props.totalCount / props.pageSize)
+const Pagination: FC<PropsType> = ({currentPage, onPageChange, pageSize, totalItemCount, pageLimit = 10}) => {
+
+    let pagesCount = Math.ceil(totalItemCount / pageSize)
 
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
 
-    let pageLimit = 10
-
-    let portionCount = Math.ceil(props.totalCount / pageLimit)
+    let portionCount = Math.ceil(totalItemCount / pageLimit)
 
     let [portionNumber, setPortionNumber] = useState(1)
 
@@ -28,11 +34,11 @@ const Pagination = (props) => {
             {pages
                 .filter(page => (page >= leftPortionNumber) && (page <= rightPortionNumber))
                 .map(page => (
-                <span key={page} className={cn ({[styles.activePage] : props.currentPage === page}, styles.pageNumber )}
-                      onClick={() => {
-                          props.onPageChange(page)
-                      }}>{page}</span>)
-            )
+                    <span key={page} className={cn({[styles.activePage]: currentPage === page}, styles.pageNumber)}
+                          onClick={() => {
+                              onPageChange(page)
+                          }}>{page}</span>)
+                )
             }
             {portionCount > portionNumber && <button onClick={() => setPortionNumber(portionNumber + 1)}>NEXT</button>}
         </div>

@@ -7,7 +7,7 @@ import {
     loadPhoto,
     saveDataProfile,
     updateUserStatus
-} from "../../redux/ProfilePageReducer";
+} from "../../redux/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
@@ -33,8 +33,8 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status
+    profile: state.profile.profile,
+    status: state.profile.status
 })
 
 export default compose(

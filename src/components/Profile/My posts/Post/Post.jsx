@@ -7,7 +7,7 @@ const Post = (props) => {
                 <div>
                 <img src={'https://www.maybelline.com/~/media/mny/us/face-makeup/modules/pathing-switcher/face-category-pathing-switcher.jpg'} alt={''}/>
                 </div>
-                {props.message}
+                {props.post}
                 <div>
                     Like {props.likes}
                 </div>
