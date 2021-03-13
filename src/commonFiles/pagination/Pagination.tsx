@@ -4,16 +4,22 @@ import {useState} from "react";
 import cn from "classnames";
 
 type PropsType = {
-    currentPage: number
-    onPageChange: (page: number) => void
-    pageSize: number
+    currentPageNumber: number
+    onPageChangeNumber: (page: number) => void
+    pageSizeNumber: number
     totalItemCount: number
     pageLimit?: number
 }
 
-const Pagination: FC<PropsType> = ({currentPage, onPageChange, pageSize, totalItemCount, pageLimit = 10}) => {
+const Pagination: FC<PropsType> = ({
+                                       currentPageNumber,
+                                       onPageChangeNumber,
+                                       pageSizeNumber,
+                                       totalItemCount,
+                                       pageLimit = 10
+                                   }) => {
 
-    let pagesCount = Math.ceil(totalItemCount / pageSize)
+    let pagesCount = Math.ceil(totalItemCount / pageSizeNumber)
 
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -34,9 +40,9 @@ const Pagination: FC<PropsType> = ({currentPage, onPageChange, pageSize, totalIt
             {pages
                 .filter(page => (page >= leftPortionNumber) && (page <= rightPortionNumber))
                 .map(page => (
-                    <span key={page} className={cn({[styles.activePage]: currentPage === page}, styles.pageNumber)}
+                    <span key={page} className={cn({[styles.activePage]: currentPageNumber === page}, styles.pageNumber)}
                           onClick={() => {
-                              onPageChange(page)
+                              onPageChangeNumber(page)
                           }}>{page}</span>)
                 )
             }

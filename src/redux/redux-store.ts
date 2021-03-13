@@ -14,9 +14,9 @@ let rootReducer = combineReducers({
     auth: authReducer,
 })
 
-type RootReducerType = typeof rootReducer
+type RootReducer = typeof rootReducer
 
-export type StateType = ReturnType<RootReducerType>
+export type RootState = ReturnType<RootReducer>
 
 let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
