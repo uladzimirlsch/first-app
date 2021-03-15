@@ -33,10 +33,10 @@ const Users: FC<PropsType> = ({
                         totalItemCount={totalItemCount}
             />
             {usersList.map(item => <User key={item.id}
-                                       userItem={item}
-                                       follow={followUser}
-                                       unfollow={unfollowUser}
-                                       followingInProgress={followingInProgressUser}
+                                         userItem={item}
+                                         follow={followUser}
+                                         unfollow={unfollowUser}
+                                         followingInProgress={followingInProgressUser}
             />)}
         </div>
     )

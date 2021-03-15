@@ -1,9 +1,7 @@
-import {authAPI, ResultCode, ResultCodeWithCaptcha, secureAPI} from "../api/api"
-import {ThunkAction} from "redux-thunk";
-import {RootState} from "./redux-store";
-
-const GET_USER_DATA = 'first-app/auth/GET-USER-DATA'
-const GET_CAPTCHA = 'first-app/auth/GET-CAPTCHA'
+import {ResultCode, ResultCodeWithCaptcha} from "../api/api"
+import {BaseThunk, InferValuesType} from "./redux-store";
+import {authAPI} from "../api/auth-api";
+import {secureAPI} from "../api/secure-api";
 
 let initialState = {
     id: null as number | null,
@@ -13,16 +11,16 @@ let initialState = {
     captchaUrl: null as string | null
 }
 
-type InitialStateType = typeof initialState
+type InitialState = typeof initialState
 
-const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
+const authReducer = (state = initialState, action: ActionsType): InitialState => {
     switch (action.type) {
-        case GET_USER_DATA:
+        case 'GET_USER_DATA':
             return {
                 ...state,
                 ...action.payload,
             }
-        case GET_CAPTCHA:
+        case 'GET_CAPTCHA':
             return {
                 ...state,
                 ...action.payload,
@@ -32,40 +30,27 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
     }
 }
 
-type ActionsType = GetUserDataType | GetCaptchaType
+type ActionsType = InferValuesType<typeof actions>
 
-
-type GetUserDataActionCreatorType = {
-    id: number | null
-    email: string | null
-    login: string | null
-    isAuthenticated: boolean
+const actions = {
+    getUserData: (id: number | null,
+                  email: string | null,
+                  login: string | null,
+                  isAuthenticated: boolean) => ({
+        type: 'GET_USER_DATA',
+        payload: {id, email, login, isAuthenticated}
+    } as const),
+    getCaptcha: (captchaUrl: string) => ({type: 'GET_CAPTCHA', payload: {captchaUrl}} as const)
 }
-type GetUserDataType = {
-    type: typeof GET_USER_DATA
-    payload: GetUserDataActionCreatorType
-}
-const getUserData = (id: number | null, email: string | null, login: string | null, isAuthenticated: boolean): GetUserDataType => ({
-    type: GET_USER_DATA,
-    payload: {id, email, login, isAuthenticated}
-})
 
-type  GetCaptchaType = {
-    type: typeof GET_CAPTCHA
-    payload: { captchaUrl: string }
-}
-const getCaptcha = (captchaUrl: string): GetCaptchaType => ({
-    type: GET_CAPTCHA, payload: {captchaUrl}
-})
-
-type ThunkActionType = ThunkAction<Promise<void>, RootState, unknown, ActionsType>
+type ThunkActionType = BaseThunk<ActionsType>
 
 export const authAccess = (): ThunkActionType =>
     async (dispatch) => {
         const Data = await authAPI.authMe()
         if (Data.resultCode === ResultCode.Up) {
             let {id, email, login} = Data.data
-            dispatch(getUserData(id, email, login, true))
+            dispatch(actions.getUserData(id, email, login, true))
         }
     }
 
@@ -81,16 +66,15 @@ export const logIn = (email: string, password: string, rememberMe: boolean, capt
 
 export const getCaptchaUrl = (): ThunkActionType =>
     async (dispatch) => {
-        const response = await secureAPI.getCaptchaUrl()
-        dispatch(getCaptcha(response.data.url))
+        const Data = await secureAPI.getCaptchaUrl()
+        dispatch(actions.getCaptcha(Data.url))
     }
-
 
 export const logOut = (): ThunkActionType =>
     async (dispatch) => {
         const Data = await authAPI.logOut()
         if (Data.resultCode === ResultCode.Up) {
-            dispatch(getUserData(null, null, null, false))
+            dispatch(actions.getUserData(null, null, null, false))
         }
     }
 

@@ -4,7 +4,6 @@ import {Form, Formik} from 'formik';
 import * as yup from 'yup';
 import FormikControl from "../../forms/FormikControl";
 
-
 const MessageForm = (props) => {
 
     const initialValues = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import {connect} from "react-redux";
 import {follow, requestUsers, unfollow} from "../../redux/users-reducer";
 import Users from "./Users";
@@ -17,7 +17,7 @@ import {
 import {RootState} from "../../redux/redux-store";
 import {UserType} from "../../types/types";
 
-type StatePropsType = {
+type StateProps = {
     currentPage: number
     pageSize: number
     totalCount: number
@@ -25,17 +25,17 @@ type StatePropsType = {
     followingInProgress: number[]
     users: UserType[]
 }
-type DispatchPropsType = {
+type DispatchProps = {
     requestUsers: (currentPage: number, pageSize: number) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
 }
-type OwnPropsType = {
+type OwnProps = {
     isAuthenticated: boolean
     title: string
 }
 
-type  PropsType = StatePropsType & DispatchPropsType & OwnPropsType
+type  PropsType = StateProps & DispatchProps & OwnProps
 
 class UsersContainer extends React.Component<PropsType> {
 
@@ -53,7 +53,6 @@ class UsersContainer extends React.Component<PropsType> {
 
         return (
             <>
-                <h2>{this.props.title}</h2>
                 {this.props.isFetching ? <Preloader/> : null}
                 <div>
                     <Users currentPageNumber={this.props.currentPage}
@@ -71,7 +70,7 @@ class UsersContainer extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = (state: RootState): StatePropsType => ({
+let mapStateToProps = (state: RootState): StateProps => ({
     isFetching: getIsFetching(state),
     currentPage: getCurrentPage(state),
     pageSize: getPageSize(state),
@@ -80,8 +79,8 @@ let mapStateToProps = (state: RootState): StatePropsType => ({
     followingInProgress: getFollowingInProgress(state),
 })
 
-export default compose(
-    connect<StatePropsType, DispatchPropsType, OwnPropsType, RootState>(mapStateToProps, {
+export default compose<ComponentType>(
+    connect<StateProps, DispatchProps, OwnProps, RootState>(mapStateToProps, {
         follow,
         unfollow,
         requestUsers

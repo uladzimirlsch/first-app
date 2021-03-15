@@ -28,7 +28,7 @@ const App = () => {
                     <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
                     </Switch>
                 </Suspense>
-                <Route path={'/users'} render={() => <UsersContainer title={'Users'}/>}/>
+                <Route path={'/users'} render={() => <UsersContainer/>}/>
                 <Route path={'/login'} render={() => <LoginContainer/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <MyMusic/>}/>
