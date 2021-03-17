@@ -10,7 +10,7 @@ import {RootState} from "../../redux/redux-store";
 
 type StateProps = {
     profile: ProfileType | null
-    status: string | null
+    status: string
 }
 type DispatchProps = {
     getUserProfile: (userId: number) => void
@@ -45,8 +45,6 @@ class ProfileContainer extends React.Component<PropsType> {
                 <Profile isOwner={!this.props.match.params.userId}
                          profile={this.props.profile}
                          status={this.props.status}
-                         getUserProfile={this.props.getUserProfile}
-                         getUserStatus={this.props.getUserStatus}
                          updateUserStatus={this.props.updateUserStatus}
                          loadPhoto={this.props.loadPhoto}
                          saveDataProfile={this.props.saveDataProfile}/>

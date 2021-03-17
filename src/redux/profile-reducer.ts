@@ -6,7 +6,7 @@ import {profileAPI} from "../api/profile-api";
 let initialState = {
     posts: [] as PostType[],
     profile: null as ProfileType | null,
-    status: '' as string | null,
+    status: ''
 }
 
 type InitialState = typeof initialState
@@ -49,7 +49,7 @@ export const actions = {
     addPost: (newPost: string | null) => ({type: 'ADD_POST', newPost} as const),
     deletePost: (postId: number) => ({type: 'DELETE_POST', postId} as const),
     setUserProfile: (profile: ProfileType) => ({type: 'SET_USER_PROFILE', profile} as const),
-    setUserStatus: (status: string | null) => ({type: 'SET_USER_STATUS', status} as const),
+    setUserStatus: (status: string) => ({type: 'SET_USER_STATUS', status} as const),
     setLoadPhotos: (photos: PhotosType) => ({type: 'SET_LOAD_PHOTOS', photos} as const),
 }
 

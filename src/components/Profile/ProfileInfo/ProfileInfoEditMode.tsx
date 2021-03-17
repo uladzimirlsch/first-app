@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {FC} from 'react';
 import * as yup from "yup";
 import {Field, Form, Formik} from "formik";
 import FormikControl from "../../../forms/FormikControl";
 import styles from "../../../forms/Form.module.css";
+import {ProfileType} from "../../../types/types";
 
-const ProfileInfoEditMode = (props) => {
+type  PropsType = {
+    isOwner: boolean
+    profile: ProfileType
+    initialValues: ProfileType
+    onSubmit: (values: ProfileType) => void
+}
+
+const ProfileInfoEditMode: FC<PropsType> = ({isOwner, profile, initialValues, onSubmit}) => {
 
     // const initialValues = {
     //     fullName: '',
@@ -35,11 +43,11 @@ const ProfileInfoEditMode = (props) => {
     })
 
     return (
-        <Formik initialValues={props.initialValues}
+        <Formik initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={props.onSubmit}>
+                onSubmit={onSubmit}>
             {formik => <Form>
-                {props.isOwner && <button type={'submit'} onClick={props.upEditMode}>save</button>}
+                {isOwner && <button type={'submit'}>save</button>}
                 <FormikControl control={'input'}
                                type={'text'}
                                label={'Full Name'}
@@ -59,17 +67,18 @@ const ProfileInfoEditMode = (props) => {
                                label={'My skills'}
                                name={'lookingForAJobDescription'}/>
                 <div>
-                    <b className={styles.aboutMeToo}>Contacts: </b>{Object.keys(props.profile.contacts).map(keys => {
-                    return <div key={keys} className={styles.aboutMeToo}>
-                        {keys}: <Field type={'text'}
-                                       id={'text'}
-                                       name={'contacts.' + keys}/>
-                    </div>
-                })}
+                    <b className={styles.aboutMeToo}>Contacts: </b>
+                    {Object
+                        .keys(profile.contacts)
+                        .map(keys => <div key={keys} className={styles.aboutMeToo}>
+                                {keys}: <Field type={'text'}
+                                               id={'text'}
+                                               name={'contacts.' + keys}/>
+                            </div>
+                        )}
                 </div>
-
             </Form>
-                }
+            }
         </Formik>
     );
 };

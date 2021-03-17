@@ -14,7 +14,6 @@ type StateProps = {
 type DispatchProps = {
     addMessage: (newMessage: string | null) => void
 }
-type  OwnProps = {}
 
 const mapStateToProps = (state: RootState): StateProps => ({
     dialogs: state.messages.dialogs,
@@ -22,7 +21,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 })
 
 export default compose<ComponentType>(
-    connect<StateProps, DispatchProps, OwnProps, RootState>(mapStateToProps, {addMessage: actions.addMessage}),
+    connect<StateProps, DispatchProps, {}, RootState>(mapStateToProps, {addMessage: actions.addMessage}),
     withAuthRedirect
 )(Dialogs)
 

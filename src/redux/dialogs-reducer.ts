@@ -17,7 +17,7 @@ const messagesReducer = (state = initialState, action: ActionsType): InitialStat
         case 'ADD_MESSAGE':
             return {
                 ...state,
-                messages: [...state.messages, {id: 0, message: action.newMessage}],
+                messages: [...state.messages, {id: 1, message: action.newMessage}],
             }
         default:
             return state

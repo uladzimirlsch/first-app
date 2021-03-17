@@ -12,7 +12,7 @@ export const authAPI = {
     authMe() {
         return instance.get<ResponseData<AuthMe>>(`auth/me`).then(res => res.data)
     },
-    logIn(email: string, password: string, rememberMe = false, captcha: string | null = null) {
+    logIn(email: string, password: string, rememberMe = false, captcha: string) {
         return instance.post<ResponseData<LogInMe>>(`auth/login`, {email, password, rememberMe, captcha}).then(res => res.data)
     },
     logOut() {

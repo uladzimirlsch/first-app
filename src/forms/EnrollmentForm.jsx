@@ -3,7 +3,7 @@ import {Form, Formik} from 'formik';
 import * as yup from 'yup';
 import FormikControl from "./FormikControl";
 
-const EnrollmentForm = (props) => {
+const EnrollmentForm = () => {
 
     const dropdownOptions = [
         {key: 'select your course', value: ''},

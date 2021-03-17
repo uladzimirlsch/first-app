@@ -43,21 +43,21 @@ const onSubmit = (values, onSubmitProps) => {
 
 const validationSchema = yup.object({
     firstName: yup
-        .string('Enter your first name')
+        .string()
         .required('Name is required!'),
     lastName: yup
-        .string('Enter your last name')
+        .string()
         .required('Name is required!'),
     email: yup
-        .string('Enter your email')
+        .string()
         .email('Invalid email format!')
         .required('E-mail is required!'),
     password: yup
-        .string('Enter your password')
+        .string()
         .min(8, 'Password should be of minimum 8 characters length!')
         .required('Password is required!'),
     comments: yup
-        .string('Enter text')
+        .string()
         .required('Text is required!')
 })
 

@@ -24,7 +24,7 @@ const Dialogs: FC<PropsType> = ({dialogs, messages, addMessage}) => {
             </div>
             <div className={styles.messages_item}>
                 <div>
-                    <MessageForm onSubmit={addNewMessage}/>
+                    <MessageForm onSubmitMessage={addNewMessage}/>
                 </div>
                 {messages.map(m => <MessageItem key={m.id} message={m}/>)}
             </div>

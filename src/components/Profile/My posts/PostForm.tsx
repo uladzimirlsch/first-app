@@ -1,17 +1,21 @@
-import React from 'react';
-import styles from "../../forms/Form.module.css";
+import React, {FC} from 'react';
 import {Form, Formik} from 'formik';
 import * as yup from 'yup';
-import FormikControl from "../../forms/FormikControl";
+import FormikControl from "../../../forms/FormikControl";
+import styles from "../../../forms/Form.module.css";
 
-const MessageForm = (props) => {
+type PropsType = {
+    onSubmitPost: (value: { newPost: string | null }) => void
+}
+
+const PostForm: FC<PropsType> = ({onSubmitPost}) => {
 
     const initialValues = {
-        newMessage: '',
+        newPost: '',
     }
 
     const validationSchema = yup.object({
-        newMessage: yup
+        newPost: yup
             .string()
             .required('Text is required!'),
     })
@@ -19,16 +23,17 @@ const MessageForm = (props) => {
     return (
         <Formik initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={props.onSubmit}>
+                onSubmit={onSubmitPost}>
             {(formik) => {
                 return <Form>
                     <FormikControl control={'textarea'}
                                    as={'textarea'}
-                                   name={'newMessage'}
-                                   placeholder={'Add message'}/>
+                                   name={'newPost'}
+                                   placeholder={'Add post'}/>
                     <button className={styles.formControl}
                             type={'submit'}
-                            disabled={!formik.isValid}>Send</button>
+                            disabled={!formik.isValid}>Send
+                    </button>
                 </Form>
             }
             }
@@ -36,4 +41,4 @@ const MessageForm = (props) => {
     );
 }
 
-export default MessageForm;
+export default PostForm;

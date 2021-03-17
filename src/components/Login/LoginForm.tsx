@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from '../../forms/Form.module.css'
 import * as yup from "yup";
 import {Field, Form, Formik} from "formik";
-import FormikControl from "../../forms/FormikControl";
+import FormikControl from "../../forms/FormikControl"
+
+type PropsType = {
+    captchaUrl: string | null
+    onSubmitLogin: (values: { email: string, password: string, rememberMe: boolean, captcha: string }) => void
+}
 
 const initialValues = {
     email: '',
     password: '',
-    // confirmPassword: '',
+    rememberMe: false,
+    captcha: ''
 }
 
 const validationSchema = yup.object({
@@ -18,17 +24,13 @@ const validationSchema = yup.object({
     password: yup
         .string()
         .min(8, 'Password should be of minimum 8 characters length!')
-        .required('Password is required!'),
-    // confirmPassword: yup
-    //     .string()
-    //     .oneOf([yup.ref('password'), ''], 'Password must match')
-    //     .required('Password is not match'),
+        .required('Password is required!')
 })
 
-const LoginForm = (props) => {
+const LoginForm: FC<PropsType> = ({captchaUrl, onSubmitLogin}) => {
     return (
         <Formik initialValues={initialValues}
-                onSubmit={props.onSubmit}
+                onSubmit={onSubmitLogin}
                 validationSchema={validationSchema}>
             {formik => {
                 return <Form>
@@ -40,19 +42,14 @@ const LoginForm = (props) => {
                                    type={'password'}
                                    label={'Password'}
                                    name={'password'}/>
-                    {/*<FormikControl control={'input'}*/}
-                    {/*               type={'password'}*/}
-                    {/*               label={'Confirm password'}*/}
-                    {/*               name={'confirmPassword'}/>*/}
-
                     <div className={styles.formControl}>
                         <label htmlFor={'checkbox'}>Remember Me</label>
                         <Field type={'checkbox'}
                                id={'checkbox'}
                                name={'checkbox'}/>
                     </div>
-                    {props.captchaUrl && <img src={props.captchaUrl} alt={''}/>}
-                    {props.captchaUrl && <FormikControl control={'input'}
+                    {captchaUrl && <img src={captchaUrl} alt={''}/>}
+                    {captchaUrl && <FormikControl control={'input'}
                                                         type={'text'}
                                                         name={'captcha'}
                                                         placeholder={'enter symbols'}/>}
