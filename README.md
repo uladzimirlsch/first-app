@@ -1,2 +1,2 @@
-# My first app
-Создание первого приложения.
+# My social network
+Create study progect(in progress).
