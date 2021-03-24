@@ -4,7 +4,10 @@ import {BaseThunk, InferValuesType} from "./redux-store";
 import {profileAPI} from "../api/profile-api";
 
 let initialState = {
-    posts: [] as PostType[],
+    posts: [{
+        id: 1,
+        post: 'Hi'
+    }] as PostType[],
     profile: null as ProfileType | null,
     status: ''
 }
@@ -16,7 +19,7 @@ const profileReducer = (state = initialState, action: ActionsType): InitialState
         case 'ADD_POST':
             return {
                 ...state,
-                posts: [...state.posts, {id: 0, post: action.newPost}],
+                posts: [...state.posts, {id: 2, post: action.newPost}],
             }
         case 'DELETE_POST':
             return {

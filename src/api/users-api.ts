@@ -8,8 +8,10 @@ type requestUsers = {
     error: string
 }
 export const usersAPI = {
-    requestUsers(currentPage = 1, pageSize = 10) {
-        return instance.get<requestUsers>(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
+    requestUsers(currentPage = 1, pageSize = 10, term: string = '', friend: null | boolean = null) {
+        return instance.get<requestUsers>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null
+            ? ''
+            : `&friend=${friend}`)).then(res => res.data)
     },
     follow(userId: number) {
         return instance.post<ResponseData>(`follow/${userId}`).then(res => res.data)

@@ -5,8 +5,10 @@ import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer"
 import thunkMiddleware, {ThunkAction} from "redux-thunk"
+import appReducer from "./app-reducer";
 
 let rootReducer = combineReducers({
+    app: appReducer,
     profile: profileReducer,
     messages: messagesReducer,
     sidebar: sidebarReducer,

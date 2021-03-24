@@ -1,27 +1,22 @@
-import Dialogs from "./Dialogs";
-import {connect} from "react-redux";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
-import {compose} from "redux";
-import {actions} from "../../redux/dialogs-reducer";
+import {useSelector} from "react-redux";
 import {RootState} from "../../redux/redux-store";
-import {DialogsType, MessagesType} from "../../types/types";
-import {ComponentType} from "react";
+import React, {FC} from "react";
+import {Redirect} from "react-router-dom";
+import {Dialogs} from "./Dialogs";
 
-type StateProps = {
-    dialogs: DialogsType []
-    messages: MessagesType []
+export const DialogsContainer: FC = () => {
+
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
+
+    if (!isAuthenticated) {
+        return <Redirect to={'/login'}/>
+    }
+
+    return (
+        <>
+            <div>
+                <Dialogs/>
+            </div>
+        </>
+    )
 }
-type DispatchProps = {
-    addMessage: (newMessage: string | null) => void
-}
-
-const mapStateToProps = (state: RootState): StateProps => ({
-    dialogs: state.messages.dialogs,
-    messages: state.messages.messages,
-})
-
-export default compose<ComponentType>(
-    connect<StateProps, DispatchProps, {}, RootState>(mapStateToProps, {addMessage: actions.addMessage}),
-    withAuthRedirect
-)(Dialogs)
-

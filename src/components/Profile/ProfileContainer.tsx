@@ -22,7 +22,6 @@ type DispatchProps = {
 type  OwnProps = {
     isOwner: boolean
 }
-
 type PathParamsType = {
     userId: string
 }

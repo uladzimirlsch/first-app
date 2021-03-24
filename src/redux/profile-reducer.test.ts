@@ -1,17 +1,15 @@
-import profilePageReducer from "./profile-reducer";
+import profileReducer, {actions} from "./profile-reducer";
 
 let state = {
-    post: [
-        {id: 1, message: 'Hello. It is my first post.', likes: 25},
-        {id: 2, message: 'Hello.', likes: 25}
-    ],
+    posts: [
+        {id: 1, post: 'Hi'}
+    ]
 }
 
 test('length of posts should be incremented', () => {
-    // let action = addPost('Hello')
+    let action = actions.addPost('Hello')
+    // @ts-ignore
+    let newState = profileReducer({state},{action})
 
-    // @ts-ignore
-    let newState = profilePageReducer({state},{action})
-    // @ts-ignore
-    expect(newState.post.length).toBe(3)
+    expect(newState.posts.length).toBe(2)
 })

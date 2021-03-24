@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Input from "./Input";
 import TextArea from "./TextArea";
 import Select from "./Select";
@@ -6,7 +6,20 @@ import Radio from "./Radio";
 import Checkbox from "./Checkbox";
 import DatePicker from "./DatePicker";
 
-const FormikControl = (props) => {
+type PropsType = {
+    control?: string
+    type?: string
+    label?: string
+    as?: string
+    name?: string
+    placeholder?: string
+    options?: {
+        key: string
+        value: string
+    }[]
+}
+
+const FormikControl: FC<PropsType> = (props) => {
     const {control, ...rest} = props
     switch (control) {
         case 'input':

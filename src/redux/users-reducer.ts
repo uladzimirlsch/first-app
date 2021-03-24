@@ -9,10 +9,16 @@ let initialState = {
     totalCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: [] as number[]
+    usersFilter: {
+        term: '',
+        friend: null as null | boolean
+    },
+    followingInProgress: [] as number[],
+
 }
 
-type InitialState = typeof initialState
+export type InitialState = typeof initialState
+export type UserSearchType = typeof initialState.usersFilter
 
 const usersReducer = (state = initialState, action: ActionsType): InitialState => {
     switch (action.type) {
@@ -46,6 +52,11 @@ const usersReducer = (state = initialState, action: ActionsType): InitialState =
                 ...state,
                 isFetching: action.isFetching,
             }
+        case "USERS_FILTER":
+            return {
+                ...state,
+                usersFilter: action.payload,
+            }
         case "TOGGLE_FOLLOWING_PROGRESS":
             return {
                 ...state,
@@ -59,6 +70,7 @@ const usersReducer = (state = initialState, action: ActionsType): InitialState =
 }
 
 type ActionsType = InferValuesType<typeof actions>
+type ThunkActionType = BaseThunk<ActionsType>
 
 const actions = {
     acceptFollow: (userId: number) => ({type: 'FOLLOW', userId} as const),
@@ -67,6 +79,7 @@ const actions = {
     setTotalUsersCount: (totalCount: number) => ({type: 'TOTAL_COUNT', totalCount} as const),
     setCurrentPage: (currentPage: number) => ({type: 'CURRENT_PAGE', currentPage} as const),
     setIsFetching: (isFetching: boolean) => ({type: 'TOGGLE_FETCHING', isFetching}) as const,
+    setUsersFilter: (usersFilter: UserSearchType) => ({type: 'USERS_FILTER', payload: usersFilter}) as const,
     setFollowingIsProgress: (isFetching: boolean, userId: number) => ({
         type: 'TOGGLE_FOLLOWING_PROGRESS',
         isFetching,
@@ -74,13 +87,12 @@ const actions = {
     } as const),
 }
 
-type ThunkActionType = BaseThunk<ActionsType>
-
-export const requestUsers = (currentPage: number, pageSize: number): ThunkActionType =>
+export const usersRequest = (currentPage: number, pageSize: number, usersFilter: UserSearchType): ThunkActionType =>
     async (dispatch) => {
         dispatch(actions.setIsFetching(true))
         dispatch(actions.setCurrentPage(currentPage))
-        let Data = await usersAPI.requestUsers(currentPage, pageSize)
+        dispatch(actions.setUsersFilter(usersFilter))
+        let Data = await usersAPI.requestUsers(currentPage, pageSize, usersFilter.term, usersFilter.friend)
         dispatch(actions.setUsers(Data.items))
         dispatch(actions.setTotalUsersCount(Data.totalCount))
         dispatch(actions.setIsFetching(false))

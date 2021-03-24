@@ -3,15 +3,16 @@ import DialogItem from "./DialogsItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 import React, {FC} from "react";
 import MessageForm from "./MessageForm";
-import {DialogsType, MessagesType} from "../../types/types";
+import {useDispatch, useSelector} from "react-redux";
+import {getDialogs, getMessages} from "../../redux/dialogs-selectors";
 
-type  PropsType = {
-    dialogs: DialogsType []
-    messages: MessagesType []
-    addMessage: (newMessage: string | null) => void
-}
+export const Dialogs: FC = () => {
 
-const Dialogs: FC<PropsType> = ({dialogs, messages, addMessage}) => {
+    const dialogs = useSelector(getDialogs)
+    const messages = useSelector(getMessages)
+    const dispatch = useDispatch()
+
+    const addMessage = (newMessage: string | null) => dispatch({type: 'ADD_MESSAGE', newMessage})
 
     const addNewMessage = (value: { newMessage: string | null }) => {
         addMessage(value.newMessage)
@@ -31,5 +32,3 @@ const Dialogs: FC<PropsType> = ({dialogs, messages, addMessage}) => {
         </div>
     )
 }
-
-export default Dialogs;

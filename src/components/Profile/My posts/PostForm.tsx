@@ -17,7 +17,7 @@ const PostForm: FC<PropsType> = ({onSubmitPost}) => {
     const validationSchema = yup.object({
         newPost: yup
             .string()
-            .required('Text is required!'),
+            .required(''),
     })
 
     return (

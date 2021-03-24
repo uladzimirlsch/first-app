@@ -1,11 +1,10 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styles from "./Pagination.module.css";
-import {useState} from "react";
 import cn from "classnames";
 
 type PropsType = {
     currentPageNumber: number
-    onPageChangeNumber: (page: number) => void
+    onPageChangeNumber: (pageNum: number) => void
     pageSizeNumber: number
     totalItemCount: number
     pageLimit?: number

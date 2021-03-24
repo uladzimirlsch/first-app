@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import styles from "./Form.module.css";
 import {ErrorMessage, Field} from "formik";
 import TextError from "./TextError";
@@ -11,7 +11,7 @@ const Checkbox = (props) => {
             <Field name={name} {...rest}>
                 {({field}) => {
                     return options.map(option => (
-                        <React.Fragment key={option.key}>
+                        <Fragment key={option.key}>
                             <input type={'checkbox'}
                                    id={option.value}
                                    {...field}
@@ -19,7 +19,7 @@ const Checkbox = (props) => {
                                    checked={field.value.includes(option.value)}
                             />
                             <label htmlFor={option.value}>{option.key}</label>
-                        </React.Fragment>)
+                        </Fragment>)
                     )
                 }
                 }

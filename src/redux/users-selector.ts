@@ -15,4 +15,8 @@ export const getCurrentPage = (state: RootState) => state.users.currentPage
 
 export const getIsFetching = (state: RootState) => state.users.isFetching
 
+export const getUsersFilter = (state: RootState) => state.users.usersFilter
+
 export const getFollowingInProgress = (state: RootState) => state.users.followingInProgress
+
+

@@ -17,7 +17,7 @@ const MessageForm: FC<PropsType> = ({onSubmitMessage}) => {
     const validationSchema = yup.object({
         newMessage: yup
             .string()
-            .required('Text is required!'),
+            .required(''),
     })
 
     return (
