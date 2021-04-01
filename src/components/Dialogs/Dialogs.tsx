@@ -12,7 +12,9 @@ export const Dialogs: FC = () => {
     const messages = useSelector(getMessages)
     const dispatch = useDispatch()
 
-    const addMessage = (newMessage: string | null) => dispatch({type: 'ADD_MESSAGE', newMessage})
+    const addMessage = (newMessage: string | null) => {
+        dispatch({type: 'ADD_MESSAGE', newMessage})
+    }
 
     const addNewMessage = (value: { newMessage: string | null }) => {
         addMessage(value.newMessage)

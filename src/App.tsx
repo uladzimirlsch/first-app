@@ -2,24 +2,25 @@ import React, {ComponentType, lazy, Suspense} from "react";
 import './App.css';
 import 'antd/dist/antd.css'
 import {Route, Switch, withRouter} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainer";
 import NavbarLeft from "./components/Navbar/NavbarLeft";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import News from "./components/News/News";
 import MyMusic from "./components/MyMusic/MyMusic";
-import Settings from "./components/Settings/Settings";
+import Photos from "./components/Photos/Photos";
 import NavbarRight from "./components/Navbar/NavbarRight";
 import Preloader from "./commonFiles/preloader/Preloader";
-import LoginContainer from "./components/Login/LoginContainer";
+import {LoginContainer} from "./components/Login/LoginContainer";
 import {connect} from "react-redux";
 import {RootState} from "./redux/redux-store";
 import {compose} from "redux";
 import {InitializedSuccess} from "./redux/app-reducer";
+import Header from "./components/Header/Header";
 
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer')
     .then(({DialogsContainer}) => ({default: DialogsContainer})),)
-const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer')
+    .then(({ProfileContainer}) => ({default: ProfileContainer})),)
 
 type StateProps = {
     initialized: boolean
@@ -41,7 +42,7 @@ class App extends React.Component<PropsType> {
         }
         return (
             <div className={"app-study"}>
-                <HeaderContainer/>
+                <Header/>
                 <NavbarLeft/>
                 <NavbarRight/>
                 <div className={'app-study-content'}>
@@ -55,7 +56,7 @@ class App extends React.Component<PropsType> {
                     <Route path={'/login'} render={() => <LoginContainer/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <MyMusic/>}/>
-                    <Route path={'/settings'} render={() => <Settings/>}/>
+                    <Route path={'/photos'} render={() => <Photos/>}/>
                 </div>
             </div>
         );

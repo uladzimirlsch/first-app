@@ -1,25 +1,19 @@
 import React, {FC} from 'react';
 import {Redirect} from "react-router-dom";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logIn} from "../../redux/auth-reducer";
 import LoginForm from "./LoginForm";
-import {RootState} from "../../redux/redux-store";
+import {getCaptcha, getUserData} from "../../redux/auth-selectors";
 
-type StateProps = {
-    captchaUrl: string | null
-    isAuthenticated: boolean
-}
-type DispatchProps = {
-    logIn: (email: string, password: string, rememberMe: boolean, captcha: string) => void
-}
+export const LoginContainer: FC = () => {
 
-type  PropsType = StateProps & DispatchProps
+    const isAuthenticated = useSelector(getUserData)
+    const captchaUrl = useSelector(getCaptcha)
+    const dispatch = useDispatch()
 
-const LoginContainer: FC<PropsType> = ({isAuthenticated, captchaUrl, logIn}) => {
-
-    const onSubmit = (values: { email: string, password: string, rememberMe: boolean, captcha: string }) => {
-        logIn(values.email, values.password, values.rememberMe, values.captcha)
-    }
+    const onSubmit = ((values: { email: string, password: string, rememberMe: boolean, captcha: string }) => {
+        dispatch(logIn(values.email, values.password, values.rememberMe, values.captcha))
+    })
 
     if (isAuthenticated) return (<Redirect to={'/profile'}/>)
 
@@ -31,10 +25,3 @@ const LoginContainer: FC<PropsType> = ({isAuthenticated, captchaUrl, logIn}) => 
         </div>
     );
 }
-
-let mapStateToProps = (state: RootState): StateProps => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    captchaUrl: state.auth.captchaUrl
-})
-
-export default connect<StateProps, DispatchProps, {}, RootState>(mapStateToProps, {logIn})(LoginContainer);

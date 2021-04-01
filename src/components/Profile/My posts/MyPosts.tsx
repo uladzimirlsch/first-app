@@ -1,18 +1,21 @@
-import React, {FC, MouseEventHandler} from "react";
+import React, {FC} from "react";
 import one from "./MyPosts.module.css"
 import Post from "./Post/Post";
 import PostForm from "./PostForm";
-import {PostType} from "../../../types/types";
+import {useDispatch, useSelector} from "react-redux";
+import {newPost} from "../../../redux/profile-selectors";
 
-type PropsType = {
-    posts: PostType []
-    addPost: (newPost: string | null) => void
-    deletePost: (postId: number) => void
-}
+const MyPosts: FC = () => {
 
-const MyPosts: FC<PropsType> = ({posts, addPost, deletePost}) => {
+    const posts = useSelector(newPost)
+    const dispatch = useDispatch()
 
-    let myPost = posts.map(p => (<Post key={p.id} post={p}/>))
+    const addPost = (newPost: string | null) => {
+        dispatch({type: 'ADD_POST', newPost})
+    }
+    const deletePost = (postId: number) => {
+        dispatch({type: 'DELETE_POST', postId})
+    }
 
     const addNewPost = (value: { newPost: string | null }) => {
         addPost(value.newPost)
@@ -28,7 +31,7 @@ const MyPosts: FC<PropsType> = ({posts, addPost, deletePost}) => {
                 <div>
                     <PostForm onSubmitPost={addNewPost}/>
                 </div>
-                {myPost }
+                {posts.map(p => (<Post key={p.id} post={p}/>))}
                 {/*<button onClick={deleteNewPost}>Delete post</button>*/}
             </div>
         </div>

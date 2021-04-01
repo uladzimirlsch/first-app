@@ -6,6 +6,8 @@ import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer"
 import thunkMiddleware, {ThunkAction} from "redux-thunk"
 import appReducer from "./app-reducer";
+import { composeWithDevTools } from 'redux-devtools-extension'
+
 
 let rootReducer = combineReducers({
     app: appReducer,
@@ -24,7 +26,7 @@ export type InferValuesType<T> = T extends {[key: string]: (...args: any) => inf
 
 export type BaseThunk<A extends Action, R = Promise<void>> = ThunkAction<R, RootState, unknown, A>
 
-let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
+let store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 
 // @ts-ignore
 window.store =  store

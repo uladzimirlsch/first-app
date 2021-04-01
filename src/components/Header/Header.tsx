@@ -1,14 +1,21 @@
 import styles from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 import React, {FC} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserData, userLogin} from "../../redux/auth-selectors";
+import {logOut} from "../../redux/auth-reducer";
 
-type PropsType = {
-    isAuthenticated: boolean
-    login: string | null
-    logOut: () => void
-}
 
-const Header: FC<PropsType> = ({isAuthenticated, login, logOut}) => {
+const Header: FC = () => {
+
+    const isAuthenticated = useSelector(getUserData)
+    const login = useSelector(userLogin)
+    const dispatch = useDispatch()
+
+    const logOutside = () => {
+        dispatch(logOut())
+    }
+
     return (
         <header className={styles.header}>
             <img
@@ -17,7 +24,7 @@ const Header: FC<PropsType> = ({isAuthenticated, login, logOut}) => {
             <div className={styles.loginBlock}>
                 {{isAuthenticated}
                     ? <div>{login}
-                        <button onClick={logOut}>Log out</button>
+                        <button onClick={logOutside}>Log out</button>
                     </div>
                     : <NavLink to={'/login'}>Login</NavLink>}
             </div>
