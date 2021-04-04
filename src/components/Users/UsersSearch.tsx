@@ -4,6 +4,7 @@ import FormikControl from "../../forms/FormikControl";
 import {UserSearchType} from "../../redux/users-reducer";
 import {useSelector} from "react-redux";
 import {getUsersFilter} from "../../redux/users-selector";
+import {Button} from "antd";
 
 type FriendType = "null' | 'true' | 'false"
 
@@ -45,7 +46,9 @@ const UsersSearch: FC<PropsType> = ({onUsersChange}) => {
                                type={'text'}
                                name={'friend'}
                                options={dropdownOptions}/>
-                <button type={'submit'} disabled={!formik.isValid}>Search</button>
+                <Button htmlType={'submit'}
+                        type={'default'}
+                        disabled={!formik.isValid}>Search</Button>
             </Form>
             }
         </Formik>

@@ -1,11 +1,11 @@
 .userPhoto {
-    padding: 10px 20px;
+    padding: 20px 20px;
 }
 
 .userPhoto img{
     width: 60px;
     height: 60px;
-    border-radius: 35px;
+    /*border-radius: 30px;*/
 }
 
 .userButton {

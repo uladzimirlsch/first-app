@@ -1,8 +1,5 @@
 .header {
     background: aliceblue;
-    grid-area: head;
-    position: fixed;
-    width: 100%;
 }
 
 .header img {

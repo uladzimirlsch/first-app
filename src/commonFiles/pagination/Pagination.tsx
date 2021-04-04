@@ -1,6 +1,7 @@
 import React, {FC, useState} from 'react';
 import styles from "./Pagination.module.css";
 import cn from "classnames";
+import {Button} from "antd";
 
 type PropsType = {
     currentPageNumber: number
@@ -35,7 +36,9 @@ const Pagination: FC<PropsType> = ({
 
     return (
         <div className={styles.pag}>
-            {portionNumber > 1 && <button onClick={() => setPortionNumber(portionNumber - 1)}>PREV</button>}
+            {portionNumber > 1 && <Button htmlType={'submit'}
+                                          type={'default'}
+                                          onClick={() => setPortionNumber(portionNumber - 1)}>prev</Button>}
             {pages
                 .filter(page => (page >= leftPortionNumber) && (page <= rightPortionNumber))
                 .map(page => (
@@ -45,7 +48,9 @@ const Pagination: FC<PropsType> = ({
                           }}>{page}</span>)
                 )
             }
-            {portionCount > portionNumber && <button onClick={() => setPortionNumber(portionNumber + 1)}>NEXT</button>}
+            {portionCount > portionNumber && <Button htmlType={'submit'}
+                                                     type={'default'}
+                                                     onClick={() => setPortionNumber(portionNumber + 1)}>next</Button>}
         </div>
     );
 };

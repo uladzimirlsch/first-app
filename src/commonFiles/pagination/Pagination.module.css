@@ -1,10 +1,16 @@
-
 .pageNumber {
-    border: 1px solid black;
+    padding: 5px 8px;
+    margin: 0 2px;
+    border: 1px solid gray;
+    border-radius: 2px;
 }
 .pageNumber.activePage {
-    font: 700 18px/1.2 'Roboto' , sans-serif;
+    font: 700 16px/1.2 'Roboto' , sans-serif;
+    color: deepskyblue;
+    padding: 8px;
+    border: 1px solid deepskyblue;
+    border-radius: 3px;
 }
 .pag {
-    padding: 10px;
+    padding: 20px;
 }

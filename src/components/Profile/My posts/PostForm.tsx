@@ -3,6 +3,7 @@ import {Form, Formik} from 'formik';
 import * as yup from 'yup';
 import FormikControl from "../../../forms/FormikControl";
 import styles from "../../../forms/Form.module.css";
+import {Button} from "antd";
 
 type PropsType = {
     onSubmitPost: (value: { newPost: string | null }) => void
@@ -30,10 +31,11 @@ const PostForm: FC<PropsType> = ({onSubmitPost}) => {
                                    as={'textarea'}
                                    name={'newPost'}
                                    placeholder={'Add post'}/>
-                    <button className={styles.formControl}
-                            type={'submit'}
+                    <Button className={styles.formControl}
+                            htmlType={'submit'}
+                            type={'primary'}
                             disabled={!formik.isValid}>Send
-                    </button>
+                    </Button>
                 </Form>
             }
             }

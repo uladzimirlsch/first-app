@@ -6,17 +6,28 @@ import React, {ChangeEvent, FC, useState} from "react";
 import ProfileInfoEditMode from "./ProfileInfoEditMode";
 import ProfileInfoCurrentMode from "./ProfileInfoCurrentMode";
 import {PhotosType, ProfileType} from "../../../types/types";
+import {useDispatch} from "react-redux";
+import {loadPhoto, saveDataProfile, updateUserStatus} from "../../../redux/profile-reducer";
 
 type  PropsType = {
     isOwner: boolean
     profile: ProfileType | null
     status: string
-    updateUserStatus: (status: string) => void
-    loadPhoto: (file: PhotosType) => void
-    saveDataProfile: (profile: ProfileType) => void
 }
 
-const ProfileInfo: FC<PropsType> = ({isOwner, profile, status, updateUserStatus, loadPhoto, saveDataProfile}) => {
+const ProfileInfo: FC<PropsType> = ({isOwner, profile, status}) => {
+
+    const dispatch = useDispatch()
+
+    const userStatus = (status: string) => {
+        dispatch(updateUserStatus(status))
+    }
+    const uploadPhoto = (file: PhotosType) => {
+        dispatch(loadPhoto(file))
+    }
+    const dataProfile = (profile: ProfileType) => {
+        dispatch(saveDataProfile(profile))
+    }
 
     const [editMode, setEditMode] = useState(false)
 
@@ -27,12 +38,12 @@ const ProfileInfo: FC<PropsType> = ({isOwner, profile, status, updateUserStatus,
     const addPhoto = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.length) {
             // @ts-ignore
-            loadPhoto(e.target.files[0])
+            uploadPhoto(e.target.files[0])
         }
     }
 
     const onSubmit = (values: ProfileType) => {
-        saveDataProfile(values)
+        dataProfile(values)
         setEditMode(false)
     }
 
@@ -44,7 +55,7 @@ const ProfileInfo: FC<PropsType> = ({isOwner, profile, status, updateUserStatus,
             </div>
             <div className={styles.aboutMe}>
                 <b>{profile.fullName}</b>
-                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+                <ProfileStatus status={status} updateUserStatus={userStatus}/>
             </div>
             {editMode
                 ? <ProfileInfoEditMode isOwner={isOwner}
