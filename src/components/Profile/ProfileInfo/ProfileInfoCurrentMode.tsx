@@ -1,7 +1,7 @@
-import {ContactsType, ProfileType} from "../../../types/types";
 import React, {FC} from "react";
-import styles from "./ProfileInfo.module.css";
+import styles from "./ProfileInfo.module.scss";
 import {Contacts} from "./ProfileInfo";
+import {ContactsType, ProfileType} from "../../../types/types";
 
 type  PropsType = {
     isOwner: boolean
@@ -9,7 +9,7 @@ type  PropsType = {
     upEditMode: () => void
 }
 
-const ProfileInfoCurrentMode: FC<PropsType> = ({isOwner, profile, upEditMode}) => {
+export const ProfileInfoCurrentMode: FC<PropsType> = ({isOwner, profile, upEditMode}) => {
     return <div className={styles.aboutMe}>
         <div className={styles.aboutMeToo}>
             <b>About me: </b>{profile.aboutMe}
@@ -33,4 +33,3 @@ const ProfileInfoCurrentMode: FC<PropsType> = ({isOwner, profile, upEditMode}) =
     </div>
 }
 
-export default ProfileInfoCurrentMode

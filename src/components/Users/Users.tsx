@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from "react";
-import Pagination from "../../commonFiles/pagination/Pagination";
+import {Pagination} from "../../commonFiles/pagination/Pagination";
 import {User} from "./User";
-import UsersSearch from "./UsersSearch";
+import {UsersSearch} from "./UsersSearch";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentPage, getPageSize, getTotalCount, getUsers, getUsersFilter} from "../../redux/users-selector";
 import {UserSearchType, usersRequest} from "../../redux/users-reducer";
@@ -20,14 +20,14 @@ export const Users: FC = () => {
     const history = useHistory()
 
     useEffect(() => {
-        const parsed = queryString.parse(history.location.search.substr(1)) as {term: string, friend: string, page: string}
+        const parsed = queryString.parse(history.location.search.substr(1)) as { term: string, friend: string, page: string }
 
         let actualUsersPage = currentPage
         let actualUsersFilter = usersFilter
 
         if (!!parsed.page) actualUsersPage = Number(parsed.page)
         if (!!parsed.term) actualUsersFilter = {...actualUsersFilter, term: parsed.term}
-        switch (parsed.friend){
+        switch (parsed.friend) {
             case 'null':
                 actualUsersFilter = {...actualUsersFilter, friend: null}
                 break

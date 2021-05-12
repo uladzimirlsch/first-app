@@ -1,4 +1,4 @@
-import one from './News.module.css'
+import one from './News.module.scss'
 
 const News = () => {
     return (

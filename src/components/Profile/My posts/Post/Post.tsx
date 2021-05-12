@@ -1,16 +1,13 @@
-import styles from "./Post.module.css"
+import styles from "./Post.module.scss"
 import {PostType} from "../../../../types/types";
 import React, {FC} from "react";
-import {Dropdown} from "antd";
 import {useDispatch} from "react-redux";
-import {DownOutlined} from "@ant-design/icons";
-import {menu} from "./Delete";
 
 type PropsType = {
     post: PostType
 }
 
-const Post: FC<PropsType> = ({post}) => {
+export const Post: FC<PropsType> = ({post}) => {
 
     const dispatch = useDispatch()
 
@@ -21,13 +18,8 @@ const Post: FC<PropsType> = ({post}) => {
     return (
         <div className={styles.item}>
             {post.post}
-            <Dropdown overlay={menu} trigger={['click']}>
-                <a className="ant-dropdown-link"
-                   onClick={(_event: React.MouseEvent<HTMLElement>) => deletePost}><DownOutlined/>
-                </a>
-            </Dropdown>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <div onClick={(_event: React.MouseEvent<HTMLElement>) => deletePost}/>
         </div>
     )
-};
-
-export default Post;
+}

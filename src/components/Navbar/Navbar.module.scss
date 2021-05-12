@@ -1,0 +1,25 @@
+.navbar {
+  grid-area: nav;
+}
+
+.item {
+  width: 25%;
+  margin-left: 16vw;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  &:hover {
+    background: lightgray;
+    border-radius: 0.2rem;
+    opacity: 0.3;
+  }
+
+  & a {
+    font: 400 1rem/1.2 'Roboto', sans-serif;
+    color: dimgray;
+    text-decoration: none;
+
+    &.activeLink {
+      color: black;
+    }
+  }
+}

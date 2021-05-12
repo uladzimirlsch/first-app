@@ -1,7 +1,6 @@
 import React, {FC, useState} from 'react';
-import styles from "./Pagination.module.css";
+import styles from "./Pagination.module.scss";
 import cn from "classnames";
-import {Button} from "antd";
 
 type PropsType = {
     currentPageNumber: number
@@ -11,13 +10,13 @@ type PropsType = {
     pageLimit?: number
 }
 
-const Pagination: FC<PropsType> = ({
-                                       currentPageNumber,
-                                       onPageChangeNumber,
-                                       pageSizeNumber,
-                                       totalItemCount,
-                                       pageLimit = 10
-                                   }) => {
+export const Pagination: FC<PropsType> = ({
+                                              currentPageNumber,
+                                              onPageChangeNumber,
+                                              pageSizeNumber,
+                                              totalItemCount,
+                                              pageLimit = 10
+                                          }) => {
 
     let pagesCount = Math.ceil(totalItemCount / pageSizeNumber)
 
@@ -36,23 +35,22 @@ const Pagination: FC<PropsType> = ({
 
     return (
         <div className={styles.pag}>
-            {portionNumber > 1 && <Button htmlType={'submit'}
-                                          type={'default'}
-                                          onClick={() => setPortionNumber(portionNumber - 1)}>prev</Button>}
+            {portionNumber > 1 && <button
+                type={'submit'}
+                onClick={() => setPortionNumber(portionNumber - 1)}>prev</button>}
             {pages
                 .filter(page => (page >= leftPortionNumber) && (page <= rightPortionNumber))
                 .map(page => (
-                    <span key={page} className={cn({[styles.activePage]: currentPageNumber === page}, styles.pageNumber)}
+                    <span key={page}
+                          className={cn({[styles.activePage]: currentPageNumber === page}, styles.pageNumber)}
                           onClick={() => {
                               onPageChangeNumber(page)
                           }}>{page}</span>)
                 )
             }
-            {portionCount > portionNumber && <Button htmlType={'submit'}
-                                                     type={'default'}
-                                                     onClick={() => setPortionNumber(portionNumber + 1)}>next</Button>}
+            {portionCount > portionNumber && <button
+                type={'submit'}
+                onClick={() => setPortionNumber(portionNumber + 1)}>next</button>}
         </div>
-    );
-};
-
-export default Pagination;
+    )
+}

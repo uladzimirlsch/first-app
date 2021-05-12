@@ -1,0 +1,27 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.dialogs_item {
+  padding: 20px;
+}
+
+.dialog {
+  font: 400 18px/1.2 'Roboto', sans-serif;
+  color: black;
+  text-decoration: none;
+  padding: 10px 0;
+
+  &.activeLink {
+    color: slategray;
+  }
+}
+
+.messages_item {
+  padding: 20px 20px 30px;
+}
+
+.message {
+  padding: 10px 0;
+}

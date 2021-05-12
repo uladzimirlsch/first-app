@@ -1,10 +1,10 @@
-import styles from "./ProfileInfo.module.css";
-import Preloader from "../../../commonFiles/preloader/Preloader";
-import ProfileStatus from "./ProfileStatus";
-import userImage from "../../../assets/images/avatar-siba.jpg";
 import React, {ChangeEvent, FC, useState} from "react";
-import ProfileInfoEditMode from "./ProfileInfoEditMode";
-import ProfileInfoCurrentMode from "./ProfileInfoCurrentMode";
+import styles from "./ProfileInfo.module.scss";
+import Preloader from "../../../commonFiles/preloader/Preloader";
+import {ProfileStatus} from "./ProfileStatus";
+import userImage from "../../../assets/images/avatar-siba.jpg";
+import {ProfileInfoEditMode} from "./ProfileInfoEditMode";
+import {ProfileInfoCurrentMode} from "./ProfileInfoCurrentMode";
 import {PhotosType, ProfileType} from "../../../types/types";
 import {useDispatch} from "react-redux";
 import {loadPhoto, saveDataProfile, updateUserStatus} from "../../../redux/profile-reducer";
@@ -15,7 +15,7 @@ type  PropsType = {
     status: string
 }
 
-const ProfileInfo: FC<PropsType> = ({isOwner, profile, status}) => {
+export const ProfileInfo: FC<PropsType> = ({isOwner, profile, status}) => {
 
     const dispatch = useDispatch()
 
@@ -76,7 +76,9 @@ type  ContactsType = {
     contactValue: string
 }
 export const Contacts: FC<ContactsType> = ({contactItem, contactValue}) => {
-    return <div className={styles.aboutContacts}>{contactItem}: {contactValue}</div>
+    return (
+        <div className={styles.aboutContacts}>
+            {contactItem}: {contactValue}
+        </div>
+    )
 }
-
-export default ProfileInfo;

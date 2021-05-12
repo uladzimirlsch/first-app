@@ -1,7 +1,7 @@
 import React, {FC} from "react";
-import one from "./MyPosts.module.css"
-import Post from "./Post/Post";
-import PostForm from "./PostForm";
+import one from "./MyPosts.module.scss"
+import {Post} from "./Post/Post";
+import {PostForm} from "./PostForm";
 import {useDispatch, useSelector} from "react-redux";
 import {newPost} from "../../../redux/profile-selectors";
 

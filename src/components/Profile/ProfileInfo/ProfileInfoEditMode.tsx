@@ -12,7 +12,7 @@ type  PropsType = {
     onSubmit: (values: ProfileType) => void
 }
 
-const ProfileInfoEditMode: FC<PropsType> = ({isOwner, profile, initialValues, onSubmit}) => {
+export const ProfileInfoEditMode: FC<PropsType> = ({isOwner, profile, initialValues, onSubmit}) => {
 
     // const initialValues = {
     //     fullName: '',
@@ -80,7 +80,5 @@ const ProfileInfoEditMode: FC<PropsType> = ({isOwner, profile, initialValues, on
             </Form>
             }
         </Formik>
-    );
-};
-
-export default ProfileInfoEditMode;
+    )
+}

@@ -1,12 +1,12 @@
 import React, {ChangeEvent, FC, useEffect, useState} from 'react';
-import styles from "./ProfileInfo.module.css";
+import styles from "./ProfileInfo.module.scss";
 
 type  PropsType = {
     status: string
     updateUserStatus: (status: string) => void
 }
 
-const ProfileStatusHooks: FC<PropsType> = ({status, updateUserStatus}) => {
+export const ProfileStatus: FC<PropsType> = ({status, updateUserStatus}) => {
 
     const [editMode, setEditMode] = useState(false)
 
@@ -44,7 +44,5 @@ const ProfileStatusHooks: FC<PropsType> = ({status, updateUserStatus}) => {
                 </div>
             }
         </div>
-    );
-};
-
-export default ProfileStatusHooks;
+    )
+}

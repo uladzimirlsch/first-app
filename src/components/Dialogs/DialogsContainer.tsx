@@ -13,10 +13,8 @@ export const DialogsContainer: FC = () => {
     }
 
     return (
-        <>
-            <div>
-                <Dialogs/>
-            </div>
-        </>
+        <div>
+            <Dialogs/>
+        </div>
     )
 }

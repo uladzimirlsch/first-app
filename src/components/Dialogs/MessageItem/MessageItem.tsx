@@ -1,12 +1,12 @@
-import styles from "./../Dialogs.module.css";
 import React, {FC} from "react";
+import styles from "../Dialogs.module.scss";
 import {MessagesType} from "../../../types/types";
 
 type  PropsType = {
     message: MessagesType
 }
 
-const MessageItem: FC<PropsType> = ({message}) => {
+export const MessageItem: FC<PropsType> = ({message}) => {
     return (
         <div>
             <div className={styles.message}>
@@ -15,5 +15,3 @@ const MessageItem: FC<PropsType> = ({message}) => {
         </div>
     )
 };
-
-export default MessageItem;

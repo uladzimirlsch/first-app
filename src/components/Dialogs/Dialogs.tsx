@@ -1,8 +1,8 @@
-import styles from "./Dialogs.module.css"
-import DialogItem from "./DialogsItem/DialogItem";
-import MessageItem from "./MessageItem/MessageItem";
 import React, {FC} from "react";
-import MessageForm from "./MessageForm";
+import styles from "./Dialogs.module.scss";
+import {DialogItem} from "./DialogsItem/DialogItem";
+import {MessageItem} from "./MessageItem/MessageItem";
+import {MessageForm} from "./MessageForm";
 import {useDispatch, useSelector} from "react-redux";
 import {getDialogs, getMessages} from "../../redux/dialogs-selectors";
 

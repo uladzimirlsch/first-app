@@ -1,16 +1,12 @@
-import React, {FC, useEffect, useState} from 'react'
-import styles from './Photos.module.css'
-import firstSlide from '../../assets/slide/best-nature-image-1280x720.jpg'
-import secondSlide from '../../assets/slide/mount-fuji-night-reflections-do-1280x720.jpg'
-import thirdSlide from '../../assets/slide/pink-rose-5k-ix-1280x720.jpg'
+import React, {FC, useEffect, useState} from 'react';
+import styles from './Photos.module.scss'
+import firstSlide from '../../assets/slide/williamsburg-bridge-new-york-0b-1280x720.jpg'
+import secondSlide from '../../assets/slide/triangle-view-from-crane-top-4k-c8-1280x720.jpg'
+import thirdSlide from '../../assets/slide/pink-tree-branches-4k-xf-1280x720.jpg'
 import fourthSlide from '../../assets/slide/nature-photography-1280x720.jpg'
-import fifthSlide from '../../assets/slide/pink-tree-branches-4k-xf-1280x720.jpg'
-import sixthSlide from '../../assets/slide/triangle-view-from-crane-top-4k-c8-1280x720.jpg'
-import seventhSlide from '../../assets/slide/williamsburg-bridge-new-york-0b-1280x720.jpg'
-import eighthSlide from '../../assets/slide/IMG_20200926_145446.jpg'
-import ninthSlide from '../../assets/slide/IMG_20201117_143538.jpg'
-import tenthSlide from '../../assets/slide/IMG_20201129_195457.jpg'
-import classNames from "classnames";
+import fifthSlide from '../../assets/slide/pink-rose-5k-ix-1280x720.jpg'
+import sixthSlide from '../../assets/slide/mount-fuji-night-reflections-do-1280x720.jpg'
+import classNames from 'classnames'
 
 const slides = [
     <img key={firstSlide} src={firstSlide} alt={'first'}/>,
@@ -19,40 +15,53 @@ const slides = [
     <img key={fourthSlide} src={fourthSlide} alt={'fourth'}/>,
     <img key={fifthSlide} src={fifthSlide} alt={'fifth'}/>,
     <img key={sixthSlide} src={sixthSlide} alt={'sixth'}/>,
-    <img key={seventhSlide} src={seventhSlide} alt={'seventh'}/>,
-    // <img key={eighthSlide} src={eighthSlide} alt={'eighth'}/>,
-    // <img key={ninthSlide} src={ninthSlide} alt={'ninth'}/>,
-    // <img key={tenthSlide} src={tenthSlide} alt={'tenth'}/>,
 ]
 
-const Photos: FC = () => {
+export const Photos: FC = () => {
 
-    const [activeSlide, setActiveSlide] = useState(0)
+    let [activeSlide, setActiveSlide] = useState(0)
 
     useEffect(() => {
         const timerId = setInterval(() => {
-            setActiveSlide((current) =>
-                current === slides.length - 1 ? 0 : current + 1
+            setActiveSlide((active) =>
+                active === slides.length - 1 ? 0 : active + 1
             )
-        }, 3000);
+        }, 5000);
         return () => clearInterval(timerId)
     }, [])
 
-    const prevImageSlide = activeSlide ? activeSlide - 1 : slides.length - 1
-    const nextImageSlide = activeSlide === slides.length -1 ? 0 : activeSlide + 1
+    let prevSlide = activeSlide ? activeSlide - 1 : slides.length - 1
+    let nextSlide = activeSlide === slides.length - 1 ? 0 : activeSlide + 1
 
     return (
-        <div className={styles.slider}>
-            <div className={classNames(styles.images, styles.imagesPrev)} key={prevImageSlide}>
-                {slides[prevImageSlide]}
+        <div className={styles.flexWrapper}>
+            <div className={styles.sliderWrapper}>
+                <div className={classNames(styles.slides, styles.slidesPrev)} key={prevSlide}>
+                    {slides[prevSlide]}
+                </div>
+                <div className={styles.slides} key={activeSlide}>
+                    {slides[activeSlide]}
+                </div>
+                <div className={classNames(styles.slides, styles.slidesNext)} key={nextSlide}>
+                    {slides[nextSlide]}
+                </div>
+                {<button className={styles.btnPrev} onClick={() => setActiveSlide(() => prevSlide)}>
+                    <i className={styles.btnArrowLeft}/>
+                </button>}
+                {<button className={styles.btnNext} onClick={() => setActiveSlide(() => nextSlide)}>
+                    <i className={styles.btnArrowRight}/>
+                </button>}
             </div>
-            <div className={styles.images} key={activeSlide}>
-                {slides[activeSlide]}
-            </div>
-            <div className={classNames(styles.images, styles.imagesNext)} key={nextImageSlide}>
-                {slides[nextImageSlide]}
+            <div className={styles.dotWrapper}>
+                {slides.slice().map((_pos, idx) => (
+                    <div
+                        className={idx === activeSlide ? classNames(styles.dot, styles.activeDot) : styles.dot}
+                        key={idx}
+                        onClick={() => setActiveSlide(() => activeSlide = idx)}
+                    />))
+                }
             </div>
         </div>
     )
-};
-export default Photos;
+}
+

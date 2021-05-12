@@ -1,5 +1,5 @@
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import React, {FC, useEffect} from "react";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {useDispatch, useSelector} from "react-redux";
 import {getProfile, getStatus} from "../../redux/profile-selectors";
 import {getUserProfile, getUserStatus} from "../../redux/profile-reducer";
@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 import {MyPosts} from "./My posts/MyPosts";
 import queryString from "querystring";
 
-const Profile: FC = () => {
+export const Profile: FC = () => {
 
     const profile = useSelector(getProfile)
     const status = useSelector(getStatus)
@@ -35,6 +35,4 @@ const Profile: FC = () => {
             <MyPosts/>
         </div>
     )
-};
-
-export default Profile;
+}

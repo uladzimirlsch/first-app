@@ -1,7 +1,9 @@
-import styles from "./Navbar.module.css";
+import React, {FC} from "react";
+import styles from "./Navbar.module.scss";
 import {NavLink} from "react-router-dom";
 
-const NavbarLeft = () => {
+
+export const Navbar: FC = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.item}>
@@ -14,9 +16,6 @@ const NavbarLeft = () => {
                 <NavLink to={'/users'} activeClassName={styles.activeLink}>Users</NavLink>
             </div>
             <div className={styles.item}>
-                <NavLink to={'/news'} activeClassName={styles.activeLink}>News</NavLink>
-            </div>
-            <div className={styles.item}>
                 <NavLink to={'/music'} activeClassName={styles.activeLink}>Music</NavLink>
             </div>
             <div className={styles.item}>
@@ -24,5 +23,4 @@ const NavbarLeft = () => {
             </div>
         </nav>
     )
-};
-export default NavbarLeft;
+}

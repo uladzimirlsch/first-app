@@ -3,7 +3,6 @@ import styles from '../../forms/Form.module.css'
 import * as yup from "yup";
 import {Field, Form, Formik} from "formik";
 import FormikControl from "../../forms/FormikControl"
-import {Button} from "antd";
 
 type PropsType = {
     captchaUrl: string | null
@@ -51,12 +50,13 @@ const LoginForm: FC<PropsType> = ({captchaUrl, onSubmitLogin}) => {
                     </div>
                     {captchaUrl && <img src={captchaUrl} alt={''}/>}
                     {captchaUrl && <FormikControl control={'input'}
-                                                        type={'text'}
-                                                        name={'captcha'}
-                                                        placeholder={'enter symbols'}/>}
-                    <Button  htmlType={'submit'}
-                             type={'primary'}
-                             disabled={!formik.isValid}>Submit</Button>
+                                                  type={'text'}
+                                                  name={'captcha'}
+                                                  placeholder={'enter symbols'}/>}
+                    <button
+                        type={'submit'}
+                        disabled={!formik.isValid}>Submit
+                    </button>
                 </Form>
             }
             }

@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import Profile from "./Profile";
+import {Profile} from "./Profile";
 import {useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {RootState} from "../../redux/redux-store";
