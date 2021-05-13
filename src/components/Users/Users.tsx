@@ -3,12 +3,23 @@ import {Pagination} from "../../commonFiles/pagination/Pagination";
 import {User} from "./User";
 import {UsersSearch} from "./UsersSearch";
 import {useDispatch, useSelector} from "react-redux";
-import {getCurrentPage, getPageSize, getTotalCount, getUsers, getUsersFilter} from "../../redux/users-selector";
+import {
+    getCurrentPage,
+    getIsFetching,
+    getPageSize,
+    getTotalCount,
+    getUsers,
+    getUsersFilter
+} from "../../redux/users-selector";
 import {UserSearchType, usersRequest} from "../../redux/users-reducer";
 import {useHistory} from "react-router-dom";
 import * as queryString from "querystring";
+import styles from './Users.module.scss'
+import Preloader from "../../commonFiles/preloader/Preloader";
 
 export const Users: FC = () => {
+
+    const isFetching = useSelector(getIsFetching)
 
     const currentPage = useSelector(getCurrentPage)
     const pageSize = useSelector(getPageSize)
@@ -57,16 +68,19 @@ export const Users: FC = () => {
     }
 
     return (
-        <div>
-            <UsersSearch onUsersChange={onUsersChange}/>
-            <Pagination currentPageNumber={currentPage}
-                        onPageChangeNumber={onPageChange}
-                        pageSizeNumber={pageSize}
-                        totalItemCount={totalCount}
-            />
-            {users.map(item => <User key={item.id}
-                                     user={item}
-            />)}
-        </div>
+        <>
+            <div className={styles.usersPage}>
+                {isFetching ? <Preloader/> : null}
+                <UsersSearch onUsersChange={onUsersChange}/>
+                <Pagination currentPageNumber={currentPage}
+                            onPageChangeNumber={onPageChange}
+                            pageSizeNumber={pageSize}
+                            totalItemCount={totalCount}
+                />
+                {users.map(item => <User key={item.id}
+                                         user={item}
+                />)}
+            </div>
+        </>
     )
 }

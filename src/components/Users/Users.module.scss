@@ -1,0 +1,36 @@
+.usersPage {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: gainsboro;
+}
+
+.userItem {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 0 2rem 1.5rem;
+  padding: 0 0 4rem 0;
+  font: 600 0.9rem/1.2 'Roboto', sans-serif;
+  text-decoration: none;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  & a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & button {
+    font: 400 0.7rem/1 'Roboto', sans-serif;
+    margin-top: 0.3rem;
+  }
+}
+

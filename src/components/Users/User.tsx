@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import styles from "./User.module.scss";
+import styles from "./Users.module.scss";
 import userImage from "../../assets/images/avatar-siba.jpg";
 import {Link} from "react-router-dom";
 import {UserType} from "../../types/types";
@@ -20,13 +20,15 @@ export const User: FC<PropsType> = ({user}) => {
     const userUnfollow = (userId: number) => dispatch(unfollow(userId))
 
     return (
-        <div className={styles.userPhoto}>
+        <div className={styles.userItem}>
             <Link to={'/profile/' + user.id}>
                 <img src={user.photos.small || userImage} alt={''}/>
             </Link>
-            <div>{user.name}</div>
+            <Link to={'/profile/' + user.id}>
+                <div>{user.name}</div>
+            </Link>
             <div>{user.status}</div>
-            <div className={styles.userButton}>
+            <div>
                 {user.followed
                     ? <button
                         type={'submit'}

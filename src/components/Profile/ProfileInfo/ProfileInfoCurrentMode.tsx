@@ -1,6 +1,4 @@
 import React, {FC} from "react";
-import styles from "./ProfileInfo.module.scss";
-import {Contacts} from "./ProfileInfo";
 import {ContactsType, ProfileType} from "../../../types/types";
 
 type  PropsType = {
@@ -8,28 +6,38 @@ type  PropsType = {
     profile: ProfileType
     upEditMode: () => void
 }
-
-export const ProfileInfoCurrentMode: FC<PropsType> = ({isOwner, profile, upEditMode}) => {
-    return <div className={styles.aboutMe}>
-        <div className={styles.aboutMeToo}>
-            <b>About me: </b>{profile.aboutMe}
-        </div>
-        <div className={styles.aboutMeToo}>
-            <b>Looking for a job: </b>{profile.lookingForAJob ? 'yes' : 'no'}
-        </div>
-        <div className={styles.aboutMeToo}>
-            <b>My skills: </b>{profile.lookingForAJobDescription}
-        </div>
-        <div className={styles.aboutMeToo}>
-            <b>Contacts: </b>
-            {Object
-                .keys(profile.contacts)
-                .map(keys => <Contacts key={keys}
-                                       contactItem={keys}
-                                       contactValue={profile.contacts[keys as keyof ContactsType]}/>)
-            }
-        </div>
-        {isOwner && <button onClick={upEditMode}>edit</button>}
-    </div>
+type  ContactType = {
+    contactItem: string
+    contactValue: string
 }
 
+export const ProfileInfoCurrentMode: FC<PropsType> = ({isOwner, profile, upEditMode}) => {
+    return (
+        <dl>
+            <dt>About me:</dt>
+            <dd>{profile.aboutMe}</dd>
+            <dt>Looking for a job:</dt>
+            <dd>{profile.lookingForAJob ? 'yes' : 'no'}</dd>
+            <dt>My skills:</dt>
+            <dd>{profile.lookingForAJobDescription}</dd>
+            <dt>Contacts:</dt>
+            <dd>
+                {Object
+                    .keys(profile.contacts)
+                    .map(keys => <Contacts key={keys}
+                                           contactItem={keys}
+                                           contactValue={profile.contacts[keys as keyof ContactsType]}/>)
+                }</dd>
+
+            {isOwner && <button onClick={upEditMode}>EDIT</button>}
+        </dl>
+    )
+}
+
+const Contacts: FC<ContactType> = ({contactItem, contactValue}) => {
+    return (
+        <div>
+            {contactItem}: {contactValue}
+        </div>
+    )
+}

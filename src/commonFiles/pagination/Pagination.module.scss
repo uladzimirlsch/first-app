@@ -1,18 +1,26 @@
-.pageNumber {
-  padding: 5px 8px;
-  margin: 0 2px;
-  border: 1px solid gray;
-  border-radius: 2px;
+.page {
+  padding: 1.5rem;
+  font: 400 0.8rem/1 'Roboto', sans-serif;
 
-  &.activePage {
-    font: 700 16px/1.2 'Roboto', sans-serif;
-    color: deepskyblue;
-    padding: 8px;
-    border: 1px solid deepskyblue;
-    border-radius: 3px;
+  & .pageNumber {
+    padding: 0.3rem 0.4rem;
+    margin: 0 0.1rem;
+    border: 0.1rem solid gray;
+    border-radius: 0.15rem;
+
+    &:hover {
+      background: white;
+      border: 0.1rem solid white;
+    }
+
+    &.activePage {
+      font-size: 0.9rem;
+      background: black;
+      color: white;
+      border: 0.1rem solid black;
+    }
   }
 }
 
-.pag {
-  padding: 20px;
-}
+
+

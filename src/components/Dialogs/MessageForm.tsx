@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import styles from "../../forms/Form.module.css";
+import styles from "../../forms/Form.module.scss";
 import {Form, Formik} from 'formik';
 import * as yup from 'yup';
 import FormikControl from "../../forms/FormikControl";

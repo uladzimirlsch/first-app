@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import styles from "./Form.module.css";
+import styles from "./Form.module.scss";
 import {ErrorMessage, Field} from "formik";
 import TextError from "./TextError";
 

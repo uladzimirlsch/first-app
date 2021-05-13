@@ -3,12 +3,13 @@
 }
 
 .flexWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  margin: 3vh 0;
 
   &:hover {
     .btnPrev, .btnNext {
@@ -22,27 +23,26 @@
 }
 
 .sliderWrapper {
-  position: relative;
-  width: 100%;
-  height: 79vh;
-  overflow: hidden;
-  box-shadow: 1rem 1rem 3rem -1rem black;
-}
-
-.slides {
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  box-shadow: 1rem 1rem 3rem -1rem black;
 
-  &.slidesPrev {
-    transform: translateX(-100%);
-  }
+  & .slides {
+    position: absolute;
+    transition: all 0.5s ease-in-out;
 
-  &.slidesNext {
-    transform: translateX(100%);
+    &.slidesPrev {
+      transform: translateX(-100%);
+    }
+
+    &.slidesNext {
+      transform: translateX(100%);
+    }
   }
 }
+
 
 .btnPrev, .btnNext {
   position: absolute;
@@ -94,7 +94,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  bottom: 8vh;
+  bottom: 1vh;
   opacity: 0;
   transition: all 0.25s ease-in;
 }

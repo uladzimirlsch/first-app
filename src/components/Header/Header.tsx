@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import styles from './Header.module.scss'
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserData, userLogin} from "../../redux/auth-selectors";
 import {logOut} from "../../redux/auth-reducer";
@@ -23,10 +23,10 @@ export const Header: FC = () => {
                 alt=""/>
             <div className={styles.loginBlock}>
                 {{isAuthenticated}
-                    ? <div>{login}
-                        <button onClick={logOutside}>Log out</button>
+                    ? <div className={styles.loginItem}>{login}
+                            <button onClick={logOutside}>Sign out</button>
                     </div>
-                    : <Link to={'/login'}>Login</Link>}
+                    : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )

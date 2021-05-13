@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC, useState} from "react";
-import styles from "./ProfileInfo.module.scss";
+import styles from "../Profile.module.scss";
 import Preloader from "../../../commonFiles/preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
 import userImage from "../../../assets/images/avatar-siba.jpg";
@@ -48,13 +48,13 @@ export const ProfileInfo: FC<PropsType> = ({isOwner, profile, status}) => {
     }
 
     return (
-        <div className={styles.profile}>
+        <>
             <div className={styles.profilePhoto}>
                 <img src={profile.photos.large || userImage} alt={''}/>
                 {isOwner && <input type={'file'} onChange={addPhoto}/>}
             </div>
             <div className={styles.aboutMe}>
-                <b>{profile.fullName}</b>
+                {profile.fullName}
                 <ProfileStatus status={status} updateUserStatus={userStatus}/>
             </div>
             {editMode
@@ -66,19 +66,9 @@ export const ProfileInfo: FC<PropsType> = ({isOwner, profile, status}) => {
                                           profile={profile}
                                           upEditMode={() => {
                                               setEditMode(true)
-                                          }}/>}
-        </div>
+                                          }}/>
+            }
+        </>
     )
 }
 
-type  ContactsType = {
-    contactItem: string
-    contactValue: string
-}
-export const Contacts: FC<ContactsType> = ({contactItem, contactValue}) => {
-    return (
-        <div className={styles.aboutContacts}>
-            {contactItem}: {contactValue}
-        </div>
-    )
-}

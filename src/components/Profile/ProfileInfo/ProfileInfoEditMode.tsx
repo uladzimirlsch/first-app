@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
+import styles from "../../../forms/Form.module.scss";
 import * as yup from "yup";
 import {Field, Form, Formik} from "formik";
 import FormikControl from "../../../forms/FormikControl";
-import styles from "../../../forms/Form.module.css";
 import {ProfileType} from "../../../types/types";
 
 type  PropsType = {
@@ -43,42 +43,42 @@ export const ProfileInfoEditMode: FC<PropsType> = ({isOwner, profile, initialVal
     })
 
     return (
-        <Formik initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={onSubmit}>
-            {formik => <Form>
-                {isOwner && <button type={'submit'}>save</button>}
-                <FormikControl control={'input'}
-                               type={'text'}
-                               label={'Full Name'}
-                               name={'fullName'}
-                               placeholder={'Your name'}/>
-                <FormikControl control={'textarea'}
-                               type={'text'}
-                               label={'About me'}
-                               name={'aboutMe'}/>
-                <div className={styles.formControl}>
+        <div className={styles.formPage}>
+            <Formik initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={onSubmit}>
+                {formik => <Form>
+                    {isOwner && <button type={'submit'}>SAVE</button>}
+                    <FormikControl control={'input'}
+                                   type={'text'}
+                                   label={'Full Name'}
+                                   name={'fullName'}
+                                   placeholder={'Your name'}/>
+                    <FormikControl control={'textarea'}
+                                   type={'text'}
+                                   label={'About me'}
+                                   name={'aboutMe'}/>
                     <label htmlFor={'checkbox'}>Looking for job</label>
                     <Field type={'checkbox'}
                            id={'checkbox'}
-                           name={'lookingForAJob'}/></div>
-                <FormikControl control={'textarea'}
-                               type={'text'}
-                               label={'My skills'}
-                               name={'lookingForAJobDescription'}/>
-                <div>
-                    <b className={styles.aboutMeToo}>Contacts: </b>
-                    {Object
-                        .keys(profile.contacts)
-                        .map(keys => <div key={keys} className={styles.aboutMeToo}>
-                                {keys}: <Field type={'text'}
-                                               id={'text'}
-                                               name={'contacts.' + keys}/>
-                            </div>
-                        )}
-                </div>
-            </Form>
-            }
-        </Formik>
+                           name={'lookingForAJob'}/>
+                    <FormikControl control={'textarea'}
+                                   type={'text'}
+                                   label={'My skills'}
+                                   name={'lookingForAJobDescription'}/>
+                    <div className={styles.aboutMe}>Contacts:
+                        {Object
+                            .keys(profile.contacts)
+                            .map(keys => <div key={keys} className={styles.aboutMe}>
+                                    {keys}: <Field type={'text'}
+                                                   id={'text'}
+                                                   name={'contacts.' + keys}/>
+                                </div>
+                            )}
+                    </div>
+                </Form>
+                }
+            </Formik>
+        </div>
     )
 }

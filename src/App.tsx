@@ -8,18 +8,18 @@ import {InitializedSuccess} from "./redux/app-reducer";
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Ads} from "./components/Ads/Ads";
-import {UsersContainer} from "./components/Users/UsersContainer";
 import {LoginContainer} from "./components/Login/LoginContainer";
 import News from "./components/News/News";
 import MyMusic from "./components/MyMusic/MyMusic";
 import {Photos} from "./components/Photos/Photos";
 import {Footer} from "./components/Footer/Footer";
+import {Users} from "./components/Users/Users";
 
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer')
     .then(({DialogsContainer}) => ({default: DialogsContainer})),)
-const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer')
-    .then(({ProfileContainer}) => ({default: ProfileContainer})),)
+const Profile = lazy(() => import('./components/Profile/Profile')
+    .then(({Profile}) => ({default: Profile})),)
 
 export const App: FC = () => {
 
@@ -43,11 +43,11 @@ export const App: FC = () => {
             <div className={styles.content}>
                 <Suspense fallback={<Preloader/>}>
                     <Switch>
-                        <Route exact path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
+                        <Route exact path={'/profile/:userId?'} render={() => <Profile/>}/>
                         <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
                     </Switch>
                 </Suspense>
-                <Route path={'/users'} render={() => <UsersContainer/>}/>
+                <Route path={'/users'} render={() => <Users/>}/>
                 <Route path={'/login'} render={() => <LoginContainer/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <MyMusic/>}/>

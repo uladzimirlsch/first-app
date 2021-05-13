@@ -34,7 +34,7 @@ export const Pagination: FC<PropsType> = ({
     let rightPortionNumber = portionNumber * pageLimit
 
     return (
-        <div className={styles.pag}>
+        <div className={styles.page}>
             {portionNumber > 1 && <button
                 type={'submit'}
                 onClick={() => setPortionNumber(portionNumber - 1)}>prev</button>}
@@ -42,10 +42,10 @@ export const Pagination: FC<PropsType> = ({
                 .filter(page => (page >= leftPortionNumber) && (page <= rightPortionNumber))
                 .map(page => (
                     <span key={page}
-                          className={cn({[styles.activePage]: currentPageNumber === page}, styles.pageNumber)}
-                          onClick={() => {
-                              onPageChangeNumber(page)
-                          }}>{page}</span>)
+                         className={cn({[styles.activePage]: currentPageNumber === page}, styles.pageNumber)}
+                         onClick={() => {
+                             onPageChangeNumber(page)
+                         }}>{page}</span>)
                 )
             }
             {portionCount > portionNumber && <button

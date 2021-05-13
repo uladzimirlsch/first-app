@@ -1,0 +1,91 @@
+.profileItem {
+  display: grid;
+  grid-template-areas:
+  " photo profile profile"
+  " photo info info"
+  " photo post post";
+  grid-template-rows: 6vw 1fr 20%;
+  grid-template-columns: 30% 1fr 1fr;
+  grid-gap: 0.8vw;
+  width: 100%;
+}
+
+
+.profilePhoto {
+  grid-area: photo;
+  position: relative;
+  font-size: 0.5vw;
+  padding: 1.2vw;
+  background: gainsboro;
+  border-radius: 0.3rem;
+  box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
+
+  & img {
+    width: 100%;
+  }
+}
+
+.aboutMe {
+  grid-area: profile;
+  font-size: 1.5vw;
+  padding: 1.2vw;
+  background: gainsboro;
+  border-radius: 0.3rem;
+  box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
+
+  & .profileStatus {
+    width: 100%;
+    font-size: 0.9vw;
+    padding: 0.4vw 0;
+
+    &:hover {
+      background: whitesmoke;
+    }
+
+    & input {
+      font-size: 0.9vw;
+      margin: 0;
+      padding: 0;
+
+    }
+  }
+}
+
+dl {
+  grid-area: info;
+  margin: 0;
+  padding: 1.2vw;
+  color: dimgray;
+  background: gainsboro;
+  border-radius: 0.3rem;
+  box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
+
+  & dt {
+    padding: 0.7rem 0 0 0;
+    font-size: 0.9vw;
+  }
+
+  & dd {
+    color: black;
+    font-size: 0.8vw;
+  }
+
+  & button {
+    font: 400 0.5vw/1 'Roboto', sans-serif;
+    margin: 0.5rem 0;
+  }
+}
+
+.postItem {
+  grid-area: post;
+  margin: 0;
+  padding: 1.2vw;
+  font-size: 1vw;
+  background: gainsboro;
+  border-radius: 0.3rem;
+  box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
+
+  & p {
+    margin: 0;
+  }
+}

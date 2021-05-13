@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import one from "./MyPosts.module.scss"
+import styles from "../Profile.module.scss"
 import {Post} from "./Post/Post";
 import {PostForm} from "./PostForm";
 import {useDispatch, useSelector} from "react-redux";
@@ -19,8 +19,8 @@ export const MyPosts: FC = () => {
     }
 
     return (
-        <div className={one.itemBlock}>
-            <h4>My Posts</h4>
+        <div className={styles.postItem}>
+            <p>My Posts</p>
             <PostForm onSubmitPost={addNewPost}/>
             {posts.map(p => (<Post key={p.id} post={p}/>))}
         </div>

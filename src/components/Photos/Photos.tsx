@@ -51,15 +51,15 @@ export const Photos: FC = () => {
                 {<button className={styles.btnNext} onClick={() => setActiveSlide(() => nextSlide)}>
                     <i className={styles.btnArrowRight}/>
                 </button>}
-            </div>
-            <div className={styles.dotWrapper}>
-                {slides.slice().map((_pos, idx) => (
-                    <div
-                        className={idx === activeSlide ? classNames(styles.dot, styles.activeDot) : styles.dot}
-                        key={idx}
-                        onClick={() => setActiveSlide(() => activeSlide = idx)}
-                    />))
-                }
+                <div className={styles.dotWrapper}>
+                    {slides.slice().map((_pos, idx) => (
+                        <div
+                            className={idx === activeSlide ? classNames(styles.dot, styles.activeDot) : styles.dot}
+                            key={idx}
+                            onClick={() => setActiveSlide(() => activeSlide = idx)}
+                        />))
+                    }
+                </div>
             </div>
         </div>
     )

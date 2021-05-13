@@ -16,10 +16,10 @@ export const Post: FC<PropsType> = ({post}) => {
     }
 
     return (
-        <div className={styles.item}>
+        <div className={styles.postItem}>
             {post.post}
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <div onClick={(_event: React.MouseEvent<HTMLElement>) => deletePost}/>
+            <button onClick={(_event: React.MouseEvent<HTMLElement>) => deletePost}>DELETE</button>
         </div>
     )
 }

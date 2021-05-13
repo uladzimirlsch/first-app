@@ -1,13 +1,17 @@
 import React, {FC, useEffect} from "react";
+import styles from "./Profile.module.scss";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {useDispatch, useSelector} from "react-redux";
 import {getProfile, getStatus} from "../../redux/profile-selectors";
 import {getUserProfile, getUserStatus} from "../../redux/profile-reducer";
-import {useParams} from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import {MyPosts} from "./My posts/MyPosts";
 import queryString from "querystring";
+import {RootState} from "../../redux/redux-store";
 
 export const Profile: FC = () => {
+
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
 
     const profile = useSelector(getProfile)
     const status = useSelector(getStatus)
@@ -26,8 +30,12 @@ export const Profile: FC = () => {
         dispatch(getUserStatus(userId))
     }, [])
 
+    if (!isAuthenticated) {
+        return <Redirect to={'/login'}/>
+    }
+
     return (
-        <div>
+        <div className={styles.profileItem}>
             <ProfileInfo isOwner={!user}
                          profile={profile}
                          status={status}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from './Form.module.css';
+import styles from './Form.module.scss';
 import {Formik, Field, Form, ErrorMessage, FieldArray, FastField} from 'formik';
 import * as yup from 'yup';
 import TextError from "./TextError";

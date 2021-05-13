@@ -1,25 +1,25 @@
 import React, {FC} from "react";
 import styles from "./Navbar.module.scss";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 export const Navbar: FC = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.item}>
-                <NavLink to={'/profile'} activeClassName={styles.activeLink}>My profile</NavLink>
+                <Link to={'/profile'}>My profile</Link>
             </div>
             <div className={styles.item}>
-                <NavLink to={'/dialogs'} activeClassName={styles.activeLink}>Messages</NavLink>
+                <Link to={'/dialogs'}>Messages</Link>
             </div>
             <div className={styles.item}>
-                <NavLink to={'/users'} activeClassName={styles.activeLink}>Users</NavLink>
+                <Link to={'/users'}>Users</Link>
             </div>
             <div className={styles.item}>
-                <NavLink to={'/music'} activeClassName={styles.activeLink}>Music</NavLink>
+                <Link to={'/music'}>Music</Link>
             </div>
             <div className={styles.item}>
-                <NavLink to={'/photos'} activeClassName={styles.activeLink}>Photos</NavLink>
+                <Link to={'/photos'}>Photos</Link>
             </div>
         </nav>
     )

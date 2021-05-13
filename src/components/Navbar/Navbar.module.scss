@@ -3,22 +3,22 @@
 }
 
 .item {
-  width: 25%;
-  margin-left: 16vw;
+  width: 20%;
+  margin-left: 19vw;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
+
   &:hover {
-    background: lightgray;
+    background: whitesmoke;
     border-radius: 0.2rem;
-    opacity: 0.3;
   }
 
   & a {
-    font: 400 1rem/1.2 'Roboto', sans-serif;
+    font-size: 0.9vw;
     color: dimgray;
     text-decoration: none;
 
-    &.activeLink {
+    &:hover {
       color: black;
     }
   }
