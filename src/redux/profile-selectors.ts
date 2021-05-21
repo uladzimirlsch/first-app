@@ -1,7 +1,7 @@
-import {RootState} from "./redux-store";
+import { RootState } from './redux-store';
 
-export const newPost = (state: RootState) => state.profile.posts
+export const newPost = (state: RootState) => state.profile.posts;
 
-export const getProfile = (state: RootState) => state.profile.profile
+export const getProfile = (state: RootState) => state.profile.profile;
 
-export const getStatus = (state: RootState) => state.profile.status
+export const getStatus = (state: RootState) => state.profile.status;

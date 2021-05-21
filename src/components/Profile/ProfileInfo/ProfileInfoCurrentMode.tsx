@@ -1,43 +1,59 @@
-import React, {FC} from "react";
-import {ContactsType, ProfileType} from "../../../types/types";
+import React, { FC } from 'react';
+import { ContactsType, ProfileType } from '../../../types/types';
+import styles from '../Profile.module.scss';
 
-type  PropsType = {
-    isOwner: boolean
-    profile: ProfileType
-    upEditMode: () => void
-}
-type  ContactType = {
-    contactItem: string
-    contactValue: string
-}
+type PropsType = {
+  isOwner: boolean;
+  profile: ProfileType;
+  upEditMode: () => void;
+};
+type ContactType = {
+  contactItem: string;
+  contactValue: string;
+};
 
-export const ProfileInfoCurrentMode: FC<PropsType> = ({isOwner, profile, upEditMode}) => {
-    return (
-        <dl>
-            <dt>About me:</dt>
-            <dd>{profile.aboutMe}</dd>
-            <dt>Looking for a job:</dt>
-            <dd>{profile.lookingForAJob ? 'yes' : 'no'}</dd>
-            <dt>My skills:</dt>
-            <dd>{profile.lookingForAJobDescription}</dd>
-            <dt>Contacts:</dt>
-            <dd>
-                {Object
-                    .keys(profile.contacts)
-                    .map(keys => <Contacts key={keys}
-                                           contactItem={keys}
-                                           contactValue={profile.contacts[keys as keyof ContactsType]}/>)
-                }</dd>
+const Contacts: FC<ContactType> = ({ contactItem, contactValue }) => {
+  return (
+    <div>
+      {contactItem}: <a href={contactValue}>{contactValue}</a>
+    </div>
+  );
+};
 
-            {isOwner && <button onClick={upEditMode}>EDIT</button>}
-        </dl>
-    )
-}
-
-const Contacts: FC<ContactType> = ({contactItem, contactValue}) => {
-    return (
-        <div>
-            {contactItem}: {contactValue}
-        </div>
-    )
-}
+export const ProfileInfoCurrentMode: FC<PropsType> = ({
+  isOwner,
+  profile,
+  upEditMode,
+}) => {
+  return (
+    <div className={styles.contactPage}>
+      <div>
+        About me:
+        <span>{profile.aboutMe}</span>
+      </div>
+      <div>
+        Looking for a job:
+        <span>{profile.lookingForAJob ? 'yes' : 'no'}</span>
+      </div>
+      <div>
+        My skills:
+        <span>{profile.lookingForAJobDescription}</span>
+      </div>
+      <div>
+        Contacts:
+        <span>
+          {Object.keys(profile.contacts).map((keys) => (
+            <Contacts
+              key={keys}
+              contactItem={keys}
+              contactValue={
+                profile.contacts[keys as keyof ContactsType]
+              }
+            />
+          ))}
+        </span>
+      </div>
+      {isOwner && <button onClick={upEditMode}>Edit</button>}
+    </div>
+  );
+};

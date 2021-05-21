@@ -1,20 +1,21 @@
-import {useSelector} from "react-redux";
-import {RootState} from "../../redux/redux-store";
-import React, {FC} from "react";
-import {Redirect} from "react-router-dom";
-import {Dialogs} from "./Dialogs";
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { RootState } from '../../redux/redux-store';
+import { Dialogs } from './Dialogs';
 
 export const DialogsContainer: FC = () => {
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated,
+  );
 
-    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
+  if (!isAuthenticated) {
+    return <Redirect to="/login" />;
+  }
 
-    if (!isAuthenticated) {
-        return <Redirect to={'/login'}/>
-    }
-
-    return (
-        <div>
-            <Dialogs/>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Dialogs />
+    </div>
+  );
+};

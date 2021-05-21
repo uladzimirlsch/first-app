@@ -1,3 +1,25 @@
 .ads {
   grid-area: ads;
 }
+
+.news {
+  width: 20%;
+  margin-left: 0.1vw;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+
+  &:hover {
+    background: whitesmoke;
+    border-radius: 0.2rem;
+  }
+
+  & a {
+    font-size: 0.9rem;
+    color: dimgray;
+    text-decoration: none;
+
+    &:hover {
+      color: black;
+    }
+  }
+}

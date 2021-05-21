@@ -1,22 +1,21 @@
 .profileItem {
   display: grid;
   grid-template-areas:
-  " photo profile profile"
-  " photo info info"
-  " photo post post";
-  grid-template-rows: 6vw 1fr 20%;
+    ' photo profile profile'
+    ' photo info info'
+    ' photo post post';
+  grid-template-rows: 7rem auto 1fr;
   grid-template-columns: 30% 1fr 1fr;
-  grid-gap: 0.8vw;
+  grid-gap: 0.8rem;
   width: 100%;
 }
-
 
 .profilePhoto {
   grid-area: photo;
   position: relative;
-  font-size: 0.5vw;
-  padding: 1.2vw;
-  background: gainsboro;
+  font-size: 0.5rem;
+  padding: 1.5rem;
+  background: whitesmoke;
   border-radius: 0.3rem;
   box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
 
@@ -27,61 +26,59 @@
 
 .aboutMe {
   grid-area: profile;
-  font-size: 1.5vw;
-  padding: 1.2vw;
-  background: gainsboro;
+  font: 400 1.6rem/1 'Roboto', sans-serif;
+  padding: 1.5rem;
+  background: whitesmoke;
   border-radius: 0.3rem;
   box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
 
   & .profileStatus {
     width: 100%;
-    font-size: 0.9vw;
-    padding: 0.4vw 0;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
 
     &:hover {
-      background: whitesmoke;
+      background: gainsboro;
     }
 
     & input {
-      font-size: 0.9vw;
+      font-size: 0.9rem;
       margin: 0;
       padding: 0;
-
     }
   }
 }
 
-dl {
+.contactPage {
   grid-area: info;
-  margin: 0;
-  padding: 1.2vw;
+  padding: 1.5rem;
   color: dimgray;
-  background: gainsboro;
+  background: whitesmoke;
   border-radius: 0.3rem;
   box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
 
-  & dt {
-    padding: 0.7rem 0 0 0;
-    font-size: 0.9vw;
+  & div {
+    padding: 0 0 0.7rem 0;
+    font-size: 0.9rem;
   }
 
-  & dd {
+  & span {
+    padding-left: 5rem;
     color: black;
-    font-size: 0.8vw;
+    font-size: 1rem;
   }
 
   & button {
-    font: 400 0.5vw/1 'Roboto', sans-serif;
-    margin: 0.5rem 0;
+    font: 400 0.8rem/1.2 'Roboto', sans-serif;
   }
 }
 
 .postItem {
   grid-area: post;
-  margin: 0;
-  padding: 1.2vw;
-  font-size: 1vw;
-  background: gainsboro;
+  padding: 1.5rem;
+  font-size: 1.1rem;
+  background: whitesmoke;
   border-radius: 0.3rem;
   box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
 

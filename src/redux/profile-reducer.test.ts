@@ -1,15 +1,14 @@
-import profileReducer, {actions} from "./profile-reducer";
+import profileReducer, { actions } from './profile-reducer';
 
-let state = {
-    posts: [
-        {id: 1, post: 'Hi'}
-    ]
-}
+const state = {
+  posts: [{ id: 1, post: 'Hi' }],
+};
 
 test('length of posts should be incremented', () => {
-    let action = actions.addPost('Hello')
-    // @ts-ignore
-    let newState = profileReducer({state},{action})
+  const action = actions.addPost('Hello');
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const newState = profileReducer({ state }, { action });
 
-    expect(newState.posts.length).toBe(2)
-})
+  expect(newState.posts.length).toBe(2);
+});

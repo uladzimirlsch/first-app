@@ -1,49 +1,48 @@
 export type PostType = {
-    id: number | null
-    post: string | null
-}
+  id: number | null;
+  post: string | null;
+};
 
 export type DialogsType = {
-    id: number | null
-    name: string | null
-}
+  id: number | null;
+  name: string | null;
+};
 
 export type MessagesType = {
-    id: number | null
-    message: string | null
-}
+  id: number | null;
+  message: string | null;
+};
 
 export type PhotosType = {
-    small: string | null
-    large: string | null
-}
+  small: string | null;
+  large: string | null;
+};
 
 export type ContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-}
+  github: string;
+  vk: string;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  website: string;
+  youtube: string;
+  mainLink: string;
+};
 
 export type ProfileType = {
-    userId: number
-    lookingForAJob: string
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ContactsType
-    photos: PhotosType
-    aboutMe: string
-}
+  userId: number;
+  lookingForAJob: string;
+  lookingForAJobDescription: string;
+  fullName: string;
+  contacts: ContactsType;
+  photos: PhotosType;
+  aboutMe: string;
+};
 
 export type UserType = {
-    id: number
-    name: string
-    status: string
-    photos: PhotosType
-    followed: boolean
-}
-
+  id: number;
+  name: string;
+  status: string;
+  photos: PhotosType;
+  followed: boolean;
+};

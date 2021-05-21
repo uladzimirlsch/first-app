@@ -1,10 +1,10 @@
-.postItem {
+.post {
   display: flex;
   flex-direction: column;
   align-items: start;
   width: 20%;
-  padding: 0.5vw;
-  font-size: 0.8vw;
+  padding: 0.5rem;
+  font-size: 0.8rem;
   color: black;
 
   & img {
@@ -15,6 +15,6 @@
   }
 
   & button {
-    font: 400 0.5vw/1 'Roboto', sans-serif;
+    font: 400 0.8rem/1.2 'Roboto', sans-serif;
   }
 }
