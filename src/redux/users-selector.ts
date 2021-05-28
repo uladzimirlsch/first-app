@@ -10,17 +10,13 @@ export const getUsers = createSelector(getUsersSelect, (users) => {
 
 export const getPageSize = (state: RootState) => state.users.pageSize;
 
-export const getTotalCount = (state: RootState) =>
-  state.users.totalCount;
+export const getTotalCount = (state: RootState) => state.users.totalCount;
 
-export const getCurrentPage = (state: RootState) =>
-  state.users.currentPage;
+export const getCurrentPage = (state: RootState) => state.users.currentPage;
 
-export const getIsFetching = (state: RootState) =>
-  state.users.isFetching;
+export const getIsFetching = (state: RootState) => state.users.isFetching;
 
-export const getUsersFilter = (state: RootState) =>
-  state.users.usersFilter;
+export const getUsersFilter = (state: RootState) => state.users.usersFilter;
 
 export const getFollowingInProgress = (state: RootState) =>
   state.users.followingInProgress;

@@ -13,10 +13,7 @@ const initialState = {
 
 type InitialState = typeof initialState;
 
-const authReducer = (
-  state = initialState,
-  action: ActionsType,
-): InitialState => {
+const authReducer = (state = initialState, action: ActionsType): InitialState => {
   switch (action.type) {
     case 'GET_USER_DATA':
       return {
@@ -68,12 +65,7 @@ export const logIn =
     captcha: string,
   ): ThunkActionType =>
   async (dispatch) => {
-    const Data = await authAPI.logIn(
-      email,
-      password,
-      rememberMe,
-      captcha,
-    );
+    const Data = await authAPI.logIn(email, password, rememberMe, captcha);
     if (Data.resultCode === ResultCode.Up) {
       await dispatch(authAccess());
     } else if (Data.resultCode === ResultCodeWithCaptcha.Captcha) {
@@ -82,11 +74,10 @@ export const logIn =
     }
   };
 
-export const getCaptchaUrl =
-  (): ThunkActionType => async (dispatch) => {
-    const Data = await secureAPI.getCaptchaUrl();
-    dispatch(actions.getCaptcha(Data.url));
-  };
+export const getCaptchaUrl = (): ThunkActionType => async (dispatch) => {
+  const Data = await secureAPI.getCaptchaUrl();
+  dispatch(actions.getCaptcha(Data.url));
+};
 
 export const logOut = (): ThunkActionType => async (dispatch) => {
   const Data = await authAPI.logOut();

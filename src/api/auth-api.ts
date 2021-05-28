@@ -10,16 +10,9 @@ type LogInMe = {
 };
 export const authAPI = {
   authMe() {
-    return instance
-      .get<ResponseData<AuthMe>>(`auth/me`)
-      .then((res) => res.data);
+    return instance.get<ResponseData<AuthMe>>(`auth/me`).then((res) => res.data);
   },
-  logIn(
-    email: string,
-    password: string,
-    rememberMe = false,
-    captcha: string,
-  ) {
+  logIn(email: string, password: string, rememberMe = false, captcha: string) {
     return instance
       .post<ResponseData<LogInMe>>(`auth/login`, {
         email,
@@ -30,8 +23,6 @@ export const authAPI = {
       .then((res) => res.data);
   },
   logOut() {
-    return instance
-      .delete<ResponseData>(`auth/login`)
-      .then((res) => res.data);
+    return instance.delete<ResponseData>(`auth/login`).then((res) => res.data);
   },
 };

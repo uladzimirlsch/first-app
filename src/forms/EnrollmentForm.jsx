@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import FormikControl from './FormikControl';
+import FormikControl from './formik-control';
 
 const EnrollmentForm = () => {
   const dropdownOptions = [
@@ -51,34 +51,26 @@ const EnrollmentForm = () => {
         return (
           <Form>
             <FormikControl
-              control={'input'}
-              type={'email'}
-              label={'Email Address'}
-              name={'email'}
+              control="input"
+              type="email"
+              label="Email Address"
+              name="email"
             />
+            <FormikControl control="textarea" label="Bio" name="bio" />
             <FormikControl
-              control={'textarea'}
-              label={'Bio'}
-              name={'bio'}
-            />
-            <FormikControl
-              control={'select'}
-              label={'Select of course'}
-              name={'course'}
+              control="select"
+              label="Select of course"
+              name="course"
               options={dropdownOptions}
             />
             <FormikControl
-              control={'checkbox'}
-              label={'Skills'}
-              name={'skills'}
+              control="checkbox"
+              label="Skills"
+              name="skills"
               options={checkboxOptions}
             />
-            <FormikControl
-              control={'date'}
-              label={'Course Date'}
-              name={'courseDate'}
-            />
-            <button type={'submit'} disabled={!formik.isValid}>
+            <FormikControl control="date" label="Course Date" name="courseDate" />
+            <button type="submit" disabled={!formik.isValid}>
               Sign Up
             </button>
           </Form>

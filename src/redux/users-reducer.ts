@@ -19,10 +19,7 @@ const initialState = {
 export type InitialState = typeof initialState;
 export type UserSearchType = typeof initialState.usersFilter;
 
-const usersReducer = (
-  state = initialState,
-  action: ActionsType,
-): InitialState => {
+const usersReducer = (state = initialState, action: ActionsType): InitialState => {
   switch (action.type) {
     case 'FOLLOW':
       return {
@@ -68,9 +65,7 @@ const usersReducer = (
         ...state,
         followingInProgress: action.isFetching
           ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter(
-              (id) => id !== action.userId,
-            ),
+          : state.followingInProgress.filter((id) => id !== action.userId),
       };
     default:
       return state;
@@ -81,12 +76,9 @@ type ActionsType = InferValuesType<typeof actions>;
 type ThunkActionType = BaseThunk<ActionsType>;
 
 const actions = {
-  acceptFollow: (userId: number) =>
-    ({ type: 'FOLLOW', userId } as const),
-  acceptUnfollow: (userId: number) =>
-    ({ type: 'UNFOLLOW', userId } as const),
-  setUsers: (users: UserType[]) =>
-    ({ type: 'SET_USERS', users } as const),
+  acceptFollow: (userId: number) => ({ type: 'FOLLOW', userId } as const),
+  acceptUnfollow: (userId: number) => ({ type: 'UNFOLLOW', userId } as const),
+  setUsers: (users: UserType[]) => ({ type: 'SET_USERS', users } as const),
   setTotalUsersCount: (totalCount: number) =>
     ({ type: 'TOTAL_COUNT', totalCount } as const),
   setCurrentPage: (currentPage: number) =>

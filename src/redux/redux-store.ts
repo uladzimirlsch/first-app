@@ -1,9 +1,4 @@
-import {
-  Action,
-  applyMiddleware,
-  combineReducers,
-  createStore,
-} from 'redux';
+import { Action, applyMiddleware, combineReducers, createStore } from 'redux';
 import thunkMiddleware, { ThunkAction } from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import profileReducer from './profile-reducer';
@@ -32,8 +27,12 @@ export type InferValuesType<T> = T extends {
   ? U
   : never;
 
-export type BaseThunk<A extends Action, R = Promise<void>> =
-  ThunkAction<R, RootState, unknown, A>;
+export type BaseThunk<A extends Action, R = Promise<void>> = ThunkAction<
+  R,
+  RootState,
+  unknown,
+  A
+>;
 
 const store = createStore(
   rootReducer,

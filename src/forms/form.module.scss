@@ -1,0 +1,45 @@
+.formPage {
+  grid-area: info;
+  background: gainsboro;
+  border-radius: 0.3rem;
+  padding: 1.5rem;
+  box-shadow: 0.5rem 0.5rem 1.5rem -1rem black;
+
+  & button {
+    font: 400 0.8rem/1.2 'Roboto', sans-serif;
+  }
+}
+
+label {
+  display: flex;
+  margin-top: 1rem;
+  padding-bottom: 0.2rem;
+  font-size: 1rem;
+}
+
+input[type='text'],
+textarea {
+  display: block;
+  width: 95%;
+  resize: vertical;
+  padding: 0.2rem;
+  font-size: 1rem;
+  background:var(--theme-page-background);
+  color: var(--theme-page-text);
+  border: 1px solid #fff;
+  border-radius: 0.2rem;
+}
+
+.formControl {
+  margin-top: 0.5rem;
+  font: 400 0.8rem/1.2 'Roboto', sans-serif;
+}
+
+.errorControl {
+  color: red;
+  padding: 0.5rem;
+}
+
+.aboutMe {
+  padding: 0.5rem 0;
+}

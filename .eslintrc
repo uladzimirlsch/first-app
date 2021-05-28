@@ -11,12 +11,7 @@
     "plugin:import/typescript",
     "prettier"
   ],
-  "plugins": [
-    "react",
-    "import",
-    "prettier",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "import", "prettier", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "rules": {
     "import/prefer-default-export": 0,
@@ -29,15 +24,9 @@
     "jsx-a11y/label-has-associated-control": [
       0,
       {
-        "labelComponents": [
-          "CustomLabel"
-        ],
-        "labelAttributes": [
-          "inputLabel"
-        ],
-        "controlComponents": [
-          "CustomInput"
-        ],
+        "labelComponents": ["CustomLabel"],
+        "labelAttributes": ["inputLabel"],
+        "controlComponents": ["CustomInput"],
         "assert": "both",
         "depth": 3
       }
@@ -69,7 +58,7 @@
         "allow": []
       }
     ],
-    "no-return-assign": 0 ,
+    "no-return-assign": 0,
     "import/no-cycle": 0,
     "react/button-has-type": [
       0,
@@ -93,30 +82,19 @@
         "html": "ignore",
         "custom": "ignore",
         "explicitSpread": "ignore",
-        "exceptions": [
-          "string"
-        ]
+        "exceptions": ["string"]
       }
     ],
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
     "react-hooks/exhaustive-deps": "warn",
-    "prettier/prettier": [
-      "error"
-    ],
+    "prettier/prettier": ["error"],
     "no-use-before-define": 0,
-    "@typescript-eslint/no-use-before-define": [
-      "error"
-    ],
+    "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/ban-types": [
       "error",
       {
@@ -138,10 +116,7 @@
     "@typescript-eslint/rule-name": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/indent": [
-      0,
-      0
-    ],
+    "@typescript-eslint/indent": [0, 0],
     "no-console": 0,
     "import/extensions": [
       "error",
@@ -155,18 +130,9 @@
     ]
   },
   "settings": {
-    "import/extensions": [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx",
-      "json"
-    ],
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx", "json"],
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "typescript": {
@@ -174,12 +140,7 @@
         "project": "./tsconfig.json"
       },
       "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   }

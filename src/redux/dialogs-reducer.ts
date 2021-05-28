@@ -20,10 +20,7 @@ const messagesReducer = (
     case 'ADD_MESSAGE':
       return {
         ...state,
-        messages: [
-          ...state.messages,
-          { id: 1, message: action.newMessage },
-        ],
+        messages: [...state.messages, { id: 1, message: action.newMessage }],
       };
     default:
       return state;

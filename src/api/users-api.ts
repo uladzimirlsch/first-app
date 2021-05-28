@@ -23,14 +23,10 @@ export const usersAPI = {
       .then((res) => res.data);
   },
   follow(userId: number) {
-    return instance
-      .post<ResponseData>(`follow/${userId}`)
-      .then((res) => res.data);
+    return instance.post<ResponseData>(`follow/${userId}`).then((res) => res.data);
   },
   unfollow(userId: number) {
-    return instance
-      .delete<ResponseData>(`follow/${userId}`)
-      .then((res) => res.data);
+    return instance.delete<ResponseData>(`follow/${userId}`).then((res) => res.data);
   },
   getUserProfile(userId: number) {
     return profileAPI.getUserProfile(userId);

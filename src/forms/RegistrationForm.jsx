@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import FormikControl from './FormikControl';
+import FormikControl from './formik-control';
 
 const RegistrationForm = () => {
   const options = [
@@ -79,7 +79,7 @@ const RegistrationForm = () => {
             />
             <FormikControl
               control={'radio'}
-              label={'Mode of contacts'}
+              label={'mode of contacts'}
               name={'modeOfContacts'}
               options={options}
             />

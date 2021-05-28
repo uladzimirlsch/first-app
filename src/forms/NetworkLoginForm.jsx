@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import styles from './Form.module.scss';
-import {
-  Formik,
-  Field,
-  Form,
-  ErrorMessage,
-  FieldArray,
-  FastField,
-} from 'formik';
+import { Formik, Field, Form, ErrorMessage, FieldArray, FastField } from 'formik';
 import * as yup from 'yup';
-import TextError from './TextError';
+import styles from './form.module.scss';
+import TextError from './text-error';
 
 const initialValues = {
   firstName: '',
@@ -51,10 +44,7 @@ const onSubmit = (values, onSubmitProps) => {
 const validationSchema = yup.object({
   firstName: yup.string().required('Name is required!'),
   lastName: yup.string().required('Name is required!'),
-  email: yup
-    .string()
-    .email('Invalid email format!')
-    .required('E-mail is required!'),
+  email: yup.string().email('Invalid email format!').required('E-mail is required!'),
   password: yup
     .string()
     .min(8, 'Password should be of minimum 8 characters length!')
@@ -82,82 +72,65 @@ const NetworkLoginForm = () => {
         {(formik) => (
           <Form>
             <div className={styles.formControl}>
-              <label htmlFor={'firstName'}>First name</label>
+              <label htmlFor="firstName">First name</label>
               <Field
-                type={'text'}
-                id={'firstName'}
-                name={'firstName'}
-                placeholder={'Your first name'}
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="Your first name"
               />
-              <ErrorMessage
-                name={'firstName'}
-                component={TextError}
-              />
+              <ErrorMessage name="firstName" component={TextError} />
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'lastName'}>Last name</label>
+              <label htmlFor="lastName">Last name</label>
               <Field
-                type={'text'}
-                id={'lastName'}
-                name={'lastName'}
-                placeholder={'Your first name'}
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Your first name"
               />
-              <ErrorMessage name={'lastName'} component={TextError} />
+              <ErrorMessage name="lastName" component={TextError} />
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'email'}>E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <Field
-                type={'email'}
-                id={'email'}
-                name={'email'}
-                placeholder={'socialnetwork@example.com'}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="socialnetwork@example.com"
               />
-              <ErrorMessage name={'email'}>
-                {(errorMsg) => (
-                  <div className={styles.errorControl}>
-                    {errorMsg}
-                  </div>
-                )}
+              <ErrorMessage name="email">
+                {(errorMsg) => <div className={styles.errorControl}>{errorMsg}</div>}
               </ErrorMessage>
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'password'}>Password</label>
-              <Field
-                type={'password'}
-                id={'password'}
-                name={'password'}
-              />
-              <ErrorMessage name={'password'} component={TextError} />
+              <label htmlFor="password">Password</label>
+              <Field type="password" id="password" name="password" />
+              <ErrorMessage name="password" component={TextError} />
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'comments'}>Comments</label>
+              <label htmlFor="comments">Comments</label>
               <Field
-                as={'textarea'}
-                id={'comments'}
-                name={'comments'}
+                as="textarea"
+                id="comments"
+                name="comments"
                 validate={validateComments}
               />
-              <ErrorMessage name={'comments'} component={TextError} />
+              <ErrorMessage name="comments" component={TextError} />
             </div>
             <div className={styles.formControl}>
-              <label htmlFor={'address'}>Address</label>
-              <FastField name={'address'}>
+              <label htmlFor="address">Address</label>
+              <FastField name="address">
                 {(props) => {
                   const { field, form, meta } = props;
                   return (
                     <div>
-                      <input
-                        type={'text'}
-                        id={'address'}
-                        {...field}
-                      />
-                      {meta.touched && meta.error ? (
-                        <div>{meta.error}</div>
-                      ) : null}
+                      <input type="text" id="address" {...field} />
+                      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
                     </div>
                   );
                 }}
@@ -165,66 +138,44 @@ const NetworkLoginForm = () => {
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'facebook'}>Facebook</label>
-              <Field
-                type={'text'}
-                id={'facebook'}
-                name={'social.facebook'}
-              />
+              <label htmlFor="facebook">Facebook</label>
+              <Field type="text" id="facebook" name="social.facebook" />
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'twitter'}>Twitter</label>
-              <Field
-                type={'text'}
-                id={'twitter'}
-                name={'social.twitter'}
-              />
+              <label htmlFor="twitter">Twitter</label>
+              <Field type="text" id="twitter" name="social.twitter" />
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'primaryPh'}>Primary phone</label>
-              <Field
-                type={'tel'}
-                id={'primaryPh'}
-                name={'phones[0]'}
-              />
+              <label htmlFor="primaryPh">Primary phone</label>
+              <Field type="tel" id="primaryPh" name="phones[0]" />
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'secondaryPh'}>Secondary phone</label>
-              <Field
-                type={'tel'}
-                id={'secondaryPh'}
-                name={'phones[1]'}
-              />
+              <label htmlFor="secondaryPh">Secondary phone</label>
+              <Field type="tel" id="secondaryPh" name="phones[1]" />
             </div>
 
             <div className={styles.formControl}>
-              <label htmlFor={'phNumbers'}>List of phones</label>
-              <FieldArray name={'phNumbers'}>
+              <label htmlFor="phNumbers">List of phones</label>
+              <FieldArray name="phNumbers">
                 {(fieldArrayProps) => {
                   const { push, remove, form } = fieldArrayProps;
                   const { values } = form;
                   const { phNumbers } = values;
                   return (
                     <div>
-                      {phNumbers.map((phNumber, index) => (
-                        <div key={index}>
-                          <Field name={`phNumbers[${index}]`} />
-                          {index > 0 && (
-                            <button
-                              type={'button'}
-                              onClick={() => remove(index)}
-                            >
+                      {phNumbers.map((phNumber, i) => (
+                        <div key={i.toString()}>
+                          <Field name={`phNumbers[${i}]`} />
+                          {i > 0 && (
+                            <button type="button" onClick={() => remove(i)}>
                               -
                             </button>
                           )}
 
-                          <button
-                            type={'button'}
-                            onClick={() => push('')}
-                          >
+                          <button type="button" onClick={() => push('')}>
                             +
                           </button>
                         </div>
@@ -234,44 +185,38 @@ const NetworkLoginForm = () => {
                 }}
               </FieldArray>
             </div>
-            {/*<button type={'button'} onClick={() => {*/}
-            {/*    formik.validateField('comments')*/}
-            {/*}}>Validate comments*/}
-            {/*</button>*/}
+            {/* <button type={'button'} onClick={() => { */}
+            {/*    formik.validateField('comments') */}
+            {/* }}>Validate comments */}
+            {/* </button> */}
 
-            {/*<button type={'button'} onClick={() => {*/}
-            {/*    formik.validateForm('').then(r => (''))*/}
-            {/*}}>Validate all*/}
-            {/*</button>*/}
+            {/* <button type={'button'} onClick={() => { */}
+            {/*    formik.validateForm('').then(r => ('')) */}
+            {/* }}>Validate all */}
+            {/* </button> */}
 
-            {/*<button type={'button'} onClick={() => {*/}
-            {/*    formik.setFieldTouched('comments')*/}
-            {/*}}>Visit comments*/}
-            {/*</button>*/}
+            {/* <button type={'button'} onClick={() => { */}
+            {/*    formik.setFieldTouched('comments') */}
+            {/* }}>Visit comments */}
+            {/* </button> */}
 
-            {/*<button type={'button'} onClick={() => {*/}
-            {/*    formik.setTouched({*/}
-            {/*        firstName: true,*/}
-            {/*        lastName: true,*/}
-            {/*        email: true,*/}
-            {/*        password: true,*/}
-            {/*        comments: true*/}
-            {/*    })*/}
-            {/*}}>Visit fields*/}
-            {/*</button>*/}
-            <button
-              type={'button'}
-              onClick={() => setFormValues(savedValues)}
-            >
+            {/* <button type={'button'} onClick={() => { */}
+            {/*    formik.setTouched({ */}
+            {/*        firstName: true, */}
+            {/*        lastName: true, */}
+            {/*        email: true, */}
+            {/*        password: true, */}
+            {/*        comments: true */}
+            {/*    }) */}
+            {/* }}>Visit fields */}
+            {/* </button> */}
+            <button type="button" onClick={() => setFormValues(savedValues)}>
               Load data
             </button>
 
-            <button type={'reset'}>Reset data</button>
+            <button type="reset">Reset data</button>
 
-            <button
-              type={'submit'}
-              disabled={!formik.isValid || formik.isSubmitting}
-            >
+            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>
               Submit
             </button>
           </Form>

@@ -15,10 +15,7 @@ const initialState = {
 
 type InitialState = typeof initialState;
 
-const appReducer = (
-  state = initialState,
-  action: ActionsType,
-): InitialState => {
+const appReducer = (state = initialState, action: ActionsType): InitialState => {
   switch (action.type) {
     case 'GET_INITIALIZED':
       return {
@@ -30,11 +27,10 @@ const appReducer = (
   }
 };
 
-export const InitializedSuccess =
-  (): ThunkActionType => async (dispatch) => {
-    const resolved = dispatch(authAccess());
-    await Promise.all([resolved]);
-    dispatch(actions.getInitialized());
-  };
+export const InitializedSuccess = (): ThunkActionType => async (dispatch) => {
+  const resolved = dispatch(authAccess());
+  await Promise.all([resolved]);
+  dispatch(actions.getInitialized());
+};
 
 export default appReducer;

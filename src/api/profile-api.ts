@@ -9,9 +9,7 @@ type loadPhoto = {
 };
 export const profileAPI = {
   getUserProfile(userId: number) {
-    return instance
-      .get<ProfileType>(`profile/${userId}`)
-      .then((res) => res.data);
+    return instance.get<ProfileType>(`profile/${userId}`).then((res) => res.data);
   },
   getUserStatus(userId: number) {
     return instance.get<string>(`profile/status/${userId}`);
@@ -33,8 +31,6 @@ export const profileAPI = {
       .then((res) => res.data);
   },
   saveDataProfile(profile: ProfileType) {
-    return instance
-      .put<ResponseData>(`profile`, profile)
-      .then((res) => res.data);
+    return instance.put<ResponseData>(`profile`, profile).then((res) => res.data);
   },
 };

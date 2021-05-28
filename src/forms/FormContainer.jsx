@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import FormikControl from './FormikControl';
+import FormikControl from './formik-control';
 
 const FormContainer = () => {
   const dropdownOptions = [
@@ -57,11 +57,9 @@ const FormContainer = () => {
       .string()
       .oneOf([yup.ref('password'), ''], 'Password must match')
       .required('Password is not match'),
-    selectOption: yup
-      .string()
-      .required('Country or region is required!'),
+    selectOption: yup.string().required('Country or region is required!'),
     radioOption: yup.string().required('Gender is required!'),
-    modeOfContacts: yup.string().required('Mode is required'),
+    modeOfContacts: yup.string().required('mode is required'),
     phone: yup.string().when('modeOfContact', {
       is: 'phonemoc',
       then: yup.string().required('Phone number is required'),
@@ -94,68 +92,64 @@ const FormContainer = () => {
       {(formik) => (
         <Form>
           <FormikControl
-            control={'input'}
-            type={'text'}
-            label={'First Name'}
-            name={'firstName'}
-            placeholder={'Your first name'}
+            control="input"
+            type="text"
+            label="First Name"
+            name="firstName"
+            placeholder="Your first name"
           />
           <FormikControl
-            control={'input'}
-            type={'text'}
-            label={'Last Name'}
-            name={'lastName'}
-            placeholder={'Your last name'}
+            control="input"
+            type="text"
+            label="Last Name"
+            name="lastName"
+            placeholder="Your last name"
           />
           <FormikControl
-            control={'input'}
-            type={'email'}
-            label={'Email Address'}
-            name={'email'}
-            placeholder={'network@examle.com'}
+            control="input"
+            type="email"
+            label="Email Address"
+            name="email"
+            placeholder="network@examle.com"
           />
           <FormikControl
-            control={'input'}
-            type={'password'}
-            label={'Password'}
-            name={'password'}
+            control="input"
+            type="password"
+            label="Password"
+            name="password"
           />
           <FormikControl
-            control={'input'}
-            type={'password'}
-            label={'Confirm password'}
-            name={'confirmPassword'}
+            control="input"
+            type="password"
+            label="Confirm password"
+            name="confirmPassword"
           />
           <FormikControl
-            control={'select'}
-            label={'Country/region'}
-            name={'selectOption'}
+            control="select"
+            label="Country/region"
+            name="selectOption"
             options={dropdownOptions}
           />
           <FormikControl
-            control={'radio'}
-            label={'Gender'}
-            name={'radioOption'}
+            control="radio"
+            label="Gender"
+            name="radioOption"
             options={radioGender}
           />
           <FormikControl
-            control={'radio'}
-            label={'Mode of contacts'}
-            name={'modeOfContacts'}
+            control="radio"
+            label="mode of contacts"
+            name="modeOfContacts"
             options={radioContacts}
           />
           <FormikControl
-            control={'input'}
-            type={'text'}
-            label={'Phone number'}
-            name={'phone'}
+            control="input"
+            type="text"
+            label="Phone number"
+            name="phone"
           />
-          <FormikControl
-            control={'date'}
-            label={'Birth Date'}
-            name={'birthDate'}
-          />
-          <button type={'submit'} disabled={!formik.isValid}>
+          <FormikControl control="date" label="Birth Date" name="birthDate" />
+          <button type="submit" disabled={!formik.isValid}>
             Submit
           </button>
         </Form>

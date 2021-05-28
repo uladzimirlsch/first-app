@@ -11,10 +11,7 @@ const initialState = {
 
 type InitialState = typeof initialState;
 
-const profileReducer = (
-  state = initialState,
-  action: ActionsType,
-): InitialState => {
+const profileReducer = (state = initialState, action: ActionsType): InitialState => {
   switch (action.type) {
     case 'ADD_POST':
       return {
@@ -24,9 +21,7 @@ const profileReducer = (
     case 'DELETE_POST':
       return {
         ...state,
-        posts: state.posts.filter(
-          (item) => item.id !== action.postId,
-        ),
+        posts: state.posts.filter((item) => item.id !== action.postId),
       };
     case 'SET_USER_PROFILE':
       return {
@@ -54,14 +49,11 @@ const profileReducer = (
 type ActionsType = InferValuesType<typeof actions>;
 
 export const actions = {
-  addPost: (newPost: string | null) =>
-    ({ type: 'ADD_POST', newPost } as const),
-  deletePost: (postId: number) =>
-    ({ type: 'DELETE_POST', postId } as const),
+  addPost: (newPost: string | null) => ({ type: 'ADD_POST', newPost } as const),
+  deletePost: (postId: number) => ({ type: 'DELETE_POST', postId } as const),
   setUserProfile: (profile: ProfileType) =>
     ({ type: 'SET_USER_PROFILE', profile } as const),
-  setUserStatus: (status: string) =>
-    ({ type: 'SET_USER_STATUS', status } as const),
+  setUserStatus: (status: string) => ({ type: 'SET_USER_STATUS', status } as const),
   setLoadPhotos: (photos: PhotosType) =>
     ({ type: 'SET_LOAD_PHOTOS', photos } as const),
 };
